@@ -1,5 +1,5 @@
 // #region Local Imports
-import Home from "@Routes/home";
+import Home from "@Pages/home";
 import { withTranslation } from "@Server/i18n";
 import { HomeActions } from "@Actions";
 // #endregion Local Imports
