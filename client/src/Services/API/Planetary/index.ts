@@ -2,18 +2,29 @@
 import { Http } from "@Services";
 // #endregion Local Imports
 
-// #region Interface Imports
-import { PlanetaryModel } from "@Interfaces";
-// #endregion Interface Imports
+/**
+ * 由于跨域问题，要想测试planetary需要先把 .env 文件中 修改proxy
+ * PROXY_ORIGIN=https://api.nasa.gov
+ */
+
+interface ApodResponse {
+    copyright: string;
+    date: string;
+    explanation: string;
+    hdurl: string;
+    service_version: string;
+    title: string;
+    url: string;
+}
 
 export const PlanetaryService = {
-    GetPlanetImage: async (
-        payload: PlanetaryModel.GetApodPayload
-    ): Promise<PlanetaryModel.GetApodResponse> => {
-        let response: PlanetaryModel.GetApodResponse;
+    GetPlanetImage: async (payload: {
+        params: { hd?: boolean };
+    }): Promise<ApodResponse> => {
+        let response: ApodResponse;
 
         try {
-            response = await Http.Request<PlanetaryModel.GetApodResponse>(
+            response = await Http.Request<ApodResponse>(
                 "GET",
                 "/planetary/apod",
                 payload.params

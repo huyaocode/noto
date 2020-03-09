@@ -4,15 +4,21 @@ import getConfig from "next/config";
 import { stringify } from "query-string";
 // #endregion Global Imports
 
-// #region Interface Imports
-import { HttpModel } from "@Interfaces";
-// #endregion Interface Imports
-
 const {
     publicRuntimeConfig: { API_KEY, API_URL },
 } = getConfig();
 
 const BaseUrl = `${API_URL}/api`;
+
+declare namespace HttpModel {
+    export interface IRequestPayload {
+        [key: string]: {} | undefined;
+    }
+
+    export interface IRequestQueryPayload {
+        [key: string]: {} | undefined;
+    }
+}
 
 export const Http = {
     Request: async <A>(

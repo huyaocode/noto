@@ -7,10 +7,6 @@ import { ActionConsts } from "@Definitions";
 import { PlanetaryService } from "@Services";
 // #endregion Local Imports
 
-// #region Interface Imports
-import { IHomePage } from "@Interfaces";
-// #endregion Interface Imports
-
 export const HomeActions = {
     Map: (payload: {}) => ({
         payload,
@@ -21,7 +17,7 @@ export const HomeActions = {
         type: ActionConsts.Home.ResetReducer,
     }),
 
-    GetApod: (payload: IHomePage.Actions.IGetApodPayload) => async (
+    GetApod: (payload: {params: {}}) => async (
         dispatch: Dispatch
     ) => {
         const result = await PlanetaryService.GetPlanetImage({

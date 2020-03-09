@@ -3,10 +3,20 @@ import { ActionConsts } from "@Definitions";
 // #endregion Local Imports
 
 // #region Interface Imports
-import { IAction, IHomePage } from "@Interfaces";
+import { IAction } from "@Interfaces";
 // #endregion Interface Imports
 
-const INITIAL_STATE: IHomePage.IStateProps = {
+export interface IStateProps {
+    home: {
+        version: number;
+    };
+    image: {
+        url: string;
+        copyright: string;
+    };
+}
+
+const INITIAL_STATE: IStateProps = {
     home: {
         version: 1,
     },
@@ -16,11 +26,9 @@ const INITIAL_STATE: IHomePage.IStateProps = {
     },
 };
 
-type IMapPayload = IHomePage.Actions.IMapPayload;
-
 export const HomeReducer = (
     state = INITIAL_STATE,
-    action: IAction<IMapPayload>
+    action: IAction<{}>
 ) => {
     switch (action.type) {
         case ActionConsts.Home.SetReducer:
