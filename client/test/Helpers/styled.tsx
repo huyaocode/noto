@@ -1,5 +1,5 @@
 import * as React from "react";
-import { theme } from "@Definitions/Styled";
+import { theme } from "@/Styled/theme";
 import { ThemeProvider } from "styled-components";
 import { shallow, mount } from "enzyme";
 

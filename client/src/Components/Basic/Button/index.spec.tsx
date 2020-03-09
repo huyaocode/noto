@@ -5,7 +5,7 @@ import { shallow } from "enzyme";
 
 // #region Local Imports
 import { mountWithTheme, shallowWithTheme } from "@Test/Helpers/styled";
-import { theme } from "@Definitions/Styled/theme";
+import { theme } from "@/Styled/theme";
 import { Button } from "./index";
 // #endregion Local Imports
 

@@ -3,18 +3,18 @@ import { Dispatch } from "redux";
 // #endregion Global Imports
 
 // #region Local Imports
-import { ActionConsts } from "@Definitions";
-import { PlanetaryService } from "@Services";
+import ActionType from "../ActionTypes";
+import { PlanetaryService } from "@/API/Planetary";
 // #endregion Local Imports
 
 export const HomeActions = {
     Map: (payload: {}) => ({
         payload,
-        type: ActionConsts.Home.SetReducer,
+        type: ActionType.Home.SetReducer,
     }),
 
     Reset: () => ({
-        type: ActionConsts.Home.ResetReducer,
+        type: ActionType.Home.ResetReducer,
     }),
 
     GetApod: (payload: {params: {}}) => async (
@@ -28,7 +28,7 @@ export const HomeActions = {
             payload: {
                 image: result,
             },
-            type: ActionConsts.Home.SetReducer,
+            type: ActionType.Home.SetReducer,
         });
     },
 };

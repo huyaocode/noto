@@ -9,12 +9,11 @@
                     "@": "./src",
                     "@Actions": "./src/Actions",
                     "@Components": "./src/Components",
-                    "@Definitions": "./src/Definitions",
                     "@Interfaces": "./src/Interfaces",
                     "@Pages": "./src/Pages",
                     "@Reducers": "./src/Redux/Reducers",
                     "@Redux": "./src/Redux",
-                    "@Services": "./src/Services",
+                    "@API": "./src/API",
                     "@Server": "./server",
                     "@Static": "./static",
                     "@Styled": "./src/Styled"

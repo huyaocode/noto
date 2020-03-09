@@ -7,7 +7,7 @@ import withRedux from "next-redux-wrapper";
 // #endregion Global Imports
 
 // #region Local Imports
-import { theme } from "@Definitions/Styled";
+import { theme } from "@/Styled/theme";
 import { appWithTranslation } from "@Server/i18n";
 import { AppWithStore } from "@Interfaces";
 import { makeStore } from "@Redux";

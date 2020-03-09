@@ -8,7 +8,3 @@ export * from "@Interfaces/Pages/NamespacesRequiredInterface"
 export * from "@Redux/IAction";
 export * from "@Redux/IStore";
 // #endregion Redux Interfaces
-
-// #region Service Interfaces
-export * from "@Services/API/Http/Http";
-// #endregion Service Interfaces

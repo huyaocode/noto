@@ -10,7 +10,7 @@ const {
 
 const BaseUrl = `${API_URL}/api`;
 
-declare namespace HttpModel {
+export declare namespace HttpModel {
     export interface IRequestPayload {
         [key: string]: {} | undefined;
     }

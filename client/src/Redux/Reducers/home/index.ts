@@ -1,5 +1,5 @@
 // #region Local Imports
-import { ActionConsts } from "@Definitions";
+import ActionTypes from '@Actions/ActionTypes'
 // #endregion Local Imports
 
 // #region Interface Imports
@@ -31,13 +31,13 @@ export const HomeReducer = (
     action: IAction<{}>
 ) => {
     switch (action.type) {
-        case ActionConsts.Home.SetReducer:
+        case ActionTypes.Home.SetReducer:
             return {
                 ...state,
                 ...action.payload,
             };
 
-        case ActionConsts.Home.ResetReducer:
+        case ActionTypes.Home.ResetReducer:
             return INITIAL_STATE;
 
         default:
