@@ -6,6 +6,32 @@ const nextRuntimeDotenv = require("next-runtime-dotenv");
 
 const withConfig = nextRuntimeDotenv({ public: ["API_URL", "API_KEY"] });
 
+const cssConfig =  withCSS({
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      const antStyles = /antd\/.*?\/style\/css.*?/
+      const origExternals = [...config.externals]
+      config.externals = [
+        (context, request, callback) => {
+          if (request.match(antStyles)) return callback()
+          if (typeof origExternals[0] === 'function') {
+            origExternals[0](context, request, callback)
+          } else {
+            callback()
+          }
+        },
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
+      ]
+
+      config.module.rules.unshift({
+        test: antStyles,
+        use: 'null-loader',
+      })
+    }
+    return config
+  },
+})
+
 const nextConfig = {
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
     analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
@@ -28,5 +54,5 @@ const nextConfig = {
 };
 
 module.exports = withConfig(
-    withPlugins([[withCSS], [withSass], [withBundleAnalyzer]], nextConfig)
+    withPlugins([[cssConfig], [withSass], [withBundleAnalyzer]], nextConfig)
 );

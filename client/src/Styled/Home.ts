@@ -3,7 +3,6 @@ import styled from "styled-components";
 // #endregion Global Imports
 
 export const Container = styled.div`
-    background-color: ${({ theme }) => theme.colors.primary};
     display: flex;
     flex-direction: column;
     flex: 1 1 100%;
@@ -35,7 +34,7 @@ export const MiddleLeftButtons = styled.div`
     font-family: Arial;
     font-weight: 700;
     font-size: 25px;
-    color: #4b6c8d;
+    color: #aaa;
     letter-spacing: 0;
     width: 55px;
     height: 236px;
@@ -44,14 +43,14 @@ export const MiddleLeftButtons = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    color: #4b6c8d;
+    color: #aaa;
 
     .button {
         cursor: pointer;
     }
 
     .active {
-        color: #2c3e50;
+        color: #aaa;
     }
 `;
 
@@ -84,6 +83,6 @@ export const ApodButton = styled.div`
 export const TopText = styled.div`
     font-size: 110px;
     font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
+    color: #aaa;
     margin-bottom: 10px;
 `;
