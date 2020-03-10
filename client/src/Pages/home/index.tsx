@@ -1,7 +1,6 @@
 // #region Global Imports
-import * as React from "react";
+import React, { useState } from "react";
 import { NextPage } from "next";
-import { useSelector, useDispatch } from "react-redux";
 import { WithTranslation } from "next-i18next";
 
 import {
@@ -12,18 +11,20 @@ import {
     MiddleLeft,
     MiddleLeftButtons,
     MiddleRight,
-    Apod,
-    ApodButton,
 } from "@Styled/Home";
-import { IStore } from "@Redux/IStore";
-import { HomeActions } from "@Actions";
 import { Heading, LocaleButton } from "@Components";
 import { NamespacesRequiredProps } from "@Interfaces";
+import { BlogApi, Blog } from "@/API/Blog";
+import { BlogContainer } from "./styled";
 // #endregion Local Imports
 
-const Home: NextPage<WithTranslation, NamespacesRequiredProps> = ({ t, i18n }) => {
-    const home = useSelector((state: IStore) => state.home);
-    const dispatch = useDispatch();
+const Home: NextPage<WithTranslation, NamespacesRequiredProps> = ({
+    t,
+    i18n,
+}) => {
+    // const home = useSelector((state: IStore) => state.home);
+    // const dispatch = useDispatch();
+    const [blogList, setBlogList] = useState<Blog[]>([]);
 
     const renderLocaleButtons = (activeLanguage: string) =>
         ["en", "es", "tr"].map(lang => (
@@ -34,7 +35,6 @@ const Home: NextPage<WithTranslation, NamespacesRequiredProps> = ({ t, i18n }) =
                 onClick={() => i18n.changeLanguage(lang)}
             />
         ));
-
     return (
         <Container>
             <Top>
@@ -48,28 +48,25 @@ const Home: NextPage<WithTranslation, NamespacesRequiredProps> = ({ t, i18n }) =
                 </MiddleLeft>
                 <MiddleRight>
                     <TopText>{t("common:Hello")}</TopText>
-                    <Heading text={t("common:World")} />
-                    <Apod>
-                        <ApodButton
-                            onClick={() => {
-                                dispatch(
-                                    HomeActions.GetApod({
-                                        params: {},
-                                    })
-                                );
-                            }}
-                        >
-                            Discover Space
-                        </ApodButton>
-                        {home.image.url && (
-                            <img
-                                src={home.image.url}
-                                height="800"
-                                alt="Discover Space"
-                            />
-                        )}
-                        <h1>{home.image.copyright}</h1>
-                    </Apod>
+                    <button
+                        onClick={() => {
+                            BlogApi.GetIndexBlog().then(res => {
+                                setBlogList(res.rows);
+                                console.log("结果", res.rows);
+                            });
+                        }}
+                    >
+                        获取后台数据
+                    </button>
+                    {blogList.map(({ id, title, user, content }) => (
+                        <BlogContainer>
+                            <h2>{title}</h2>
+                            <h3>
+                                id: {id}, author: {user.username}
+                            </h3>
+                            <div>{content}</div>
+                        </BlogContainer>
+                    ))}
                 </MiddleRight>
             </Middle>
         </Container>

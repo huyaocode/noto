@@ -1,0 +1,28 @@
+@origin = http://127.0.0.1:8000
+
+### getBlog
+GET {{origin}}/api/blog
+
+### createBlog
+POST {{origin}}/api/blog
+content-type: application/json
+
+{
+    "title": "blog-2",
+    "summary": "asdfjasdf",
+    "content": "使用 REST ；ask的肌肤",
+    "tags": "tag",
+    "user_id": 1
+}
+
+### updateBlog
+PUT {{origin}}/api/users/1/blog/1
+content-type: application/json
+
+{
+    "title": "hello world",
+    "summary": "first blog",
+    "content": "更新了",
+    "tags": "tag",
+    "user_id": 1
+}

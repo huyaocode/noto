@@ -1,0 +1,14 @@
+@origin = http://127.0.0.1:8000
+
+### getUserById
+GET {{origin}}/api/users/1
+
+### createUser
+POST {{origin}}/api/users
+content-type: application/json
+
+{
+  "username": "hy",
+  "password": "123",
+  "authority_id": 1
+}

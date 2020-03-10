@@ -1,5 +1,5 @@
 // #region Local Imports
-import { PlanetaryService } from "@Services";
+import { PlanetaryService } from "./";
 // #endregion Local Imports
 
 describe("Planetary Service tests", () => {
