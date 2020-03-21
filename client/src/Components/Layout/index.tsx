@@ -61,16 +61,9 @@ export const PageLayout = ({
                 </div>
             </Header>
             <main className="container">{children }</main>
-            <Footer
-                style={{
-                    textAlign: "center",
-                    position: "fixed",
-                    bottom: 0,
-                    width: "100%",
-                }}
-            >
-                Created by HuYao
-            </Footer>
+            <footer className="footer">
+            <div className="container">Created by HuYao</div>
+            </footer>
         </Layout>
     );
 };
