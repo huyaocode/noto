@@ -29,7 +29,6 @@ export const MiddleLeft = styled.div`
 `;
 
 export const MiddleLeftButtons = styled.div`
-    background: #f9da2e;
     border-radius: 8px;
     font-family: Arial;
     font-weight: 700;
@@ -69,7 +68,6 @@ export const Apod = styled.div`
 `;
 
 export const ApodButton = styled.div`
-    background: #f9da2e;
     border-radius: 5px;
     padding: 5px 10px;
     font-family: Arial;
