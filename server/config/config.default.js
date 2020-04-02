@@ -1,5 +1,4 @@
 'use strict';
-const sqlConfig = require('../config');
 module.exports = appInfo => {
   const config = exports = {};
 
@@ -14,11 +13,11 @@ module.exports = appInfo => {
     dialectOptions: {
       charset: 'utf8mb4',
     },
-    database: 'egg_db',
+    database: 'noto_db',
     host: 'localhost',
     port: '3306',
-    username: sqlConfig.localSql.username,
-    password: sqlConfig.localSql.password,
+    username: 'root',
+    password: 'root',
     timezone: '+08:00',
   };
 
@@ -26,17 +25,11 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
-    domainWhiteList: [ 'http://119.29.151.195' ],
+    domainWhiteList: [ ],
   };
 
   config.cors = {
     credentials: true,
-  };
-
-  config.alinode = {
-    enable: false,
-    appid: 'your appid',
-    secret: 'your secret',
   };
 
   return config;

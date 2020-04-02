@@ -8,12 +8,12 @@ class CommentController extends Controller {
       ctx,
     } = this;
     const {
-      blog_id,
+      diary_id,
       user_id,
       content,
     } = ctx.request.body;
     ctx.body = await ctx.service.comment.create({
-      blog_id,
+      diary_id,
       user_id,
       content,
     });

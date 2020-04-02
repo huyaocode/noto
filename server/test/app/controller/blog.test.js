@@ -4,26 +4,26 @@ const {
   assert,
 } = require('egg-mock/bootstrap');
 
-describe('test/controller/blog.test.js', () => {
-  it('GET /api/blog should work', async () => {
-    const result = await app.httpRequest().get('/api/blog');
+describe('test/controller/diary.test.js', () => {
+  it('GET /api/diary should work', async () => {
+    const result = await app.httpRequest().get('/api/diary');
 
     assert(result.status === 200);
     assert(result.body.data.count > 0);
   });
 
-  it('GET /api/blog/:id should work', async () => {
-    const result = await app.httpRequest().get('/api/blog/1');
+  it('GET /api/diary/:id should work', async () => {
+    const result = await app.httpRequest().get('/api/diary/1');
 
     assert(result.status === 200);
     assert(result.body.data.readSize > 0);
   });
 
-  it('POST /api/blog should work', async () => {
-    const result = await app.httpRequest().post('/api/blog')
+  it('POST /api/diary should work', async () => {
+    const result = await app.httpRequest().post('/api/diary')
       .send({
         title: 'hello world',
-        summary: 'first blog',
+        summary: 'first diary',
         content: '### title',
         tags: 'html,css',
         user_id: 1,

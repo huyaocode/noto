@@ -36,23 +36,23 @@
                     <ul class="nav list-group bs_list_group">
                         
                             <li>
-                                <span>Blog</span>
+                                <span>Diary</span>
                                 <ul class="nav list-group">
                                     
                                     <li>
-                                        <a href="#4af5e78be0684b7f9fc162033fa192dd">getBlog</a>
+                                        <a href="#4af5e78be0684b7f9fc162033fa192dd">getDiary</a>
                                     </li><li>
-                                        <a href="#cae2c78a4d534a15a75609aa6e1072dd">createBlog</a>
+                                        <a href="#cae2c78a4d534a15a75609aa6e1072dd">createDiary</a>
                                     </li><li>
-                                        <a href="#b429fda7025c4d66968d4b189b301eef">delBlog</a>
+                                        <a href="#b429fda7025c4d66968d4b189b301eef">delDiary</a>
                                     </li><li>
-                                        <a href="#9e678bc385ad4371828c13080f43384c">updateBlog</a>
+                                        <a href="#9e678bc385ad4371828c13080f43384c">updateDiary</a>
                                     </li><li>
-                                        <a href="#0f59daaafa83412cafac1fe936bcb2a7">getBlogById</a>
+                                        <a href="#0f59daaafa83412cafac1fe936bcb2a7">getDiaryById</a>
                                     </li><li>
-                                        <a href="#4dd62e55c9ff4dee8e2c7df50ac95e5a">getBlogForEdit</a>
+                                        <a href="#4dd62e55c9ff4dee8e2c7df50ac95e5a">getDiaryForEdit</a>
                                     </li><li>
-                                        <a href="#b1fb113f3c5f4063ab94e685a15edb0f">getBlogTags</a>
+                                        <a href="#b1fb113f3c5f4063ab94e685a15edb0f">getDiaryTags</a>
                                     </li>
                                 </ul><span>User</span>
                                 <ul class="nav list-group">
@@ -108,17 +108,17 @@
             <div class="col-md-9 docs_main">
                 <div class="block-doc-one">
                     
-                    <h1 id="t_api_doc">Blog</h1>
+                    <h1 id="t_api_doc">Diary</h1>
                     
                     <div class="api-one">
-                        <h3 id="4af5e78be0684b7f9fc162033fa192dd">getBlog</h3>
+                        <h3 id="4af5e78be0684b7f9fc162033fa192dd">getDiary</h3>
                         <p>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=4af5e78be0684b7f9fc162033fa192dd" class="label label-warning">在线测试</a>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=4af5e78be0684b7f9fc162033fa192dd" class="label label-warning">在线浏览</a>
                         </p>
                         <p>请求方式：GET</p>
                         <p>
-                            请求地址：http://{{dev}}/api/blog                        </p>
+                            请求地址：http://{{dev}}/api/diary                        </p>
                         
                         
                         <table class="table table-hover">
@@ -180,7 +180,7 @@
             {
                 "id": 1,
                 "title": "hello world",
-                "summary": "first blog",
+                "summary": "first diary",
                 "content": "### title",
                 "readSize": 7,
                 "commentSize": 1,
@@ -212,14 +212,14 @@
                         </div>                        
                         
                     </div><div class="api-one">
-                        <h3 id="cae2c78a4d534a15a75609aa6e1072dd">createBlog</h3>
+                        <h3 id="cae2c78a4d534a15a75609aa6e1072dd">createDiary</h3>
                         <p>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=cae2c78a4d534a15a75609aa6e1072dd" class="label label-warning">在线测试</a>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=cae2c78a4d534a15a75609aa6e1072dd" class="label label-warning">在线浏览</a>
                         </p>
                         <p>请求方式：POST</p>
                         <p>
-                            请求地址：http://{{dev}}/api/blog                        </p>
+                            请求地址：http://{{dev}}/api/diary                        </p>
                         
                         
                         
@@ -230,7 +230,7 @@
                                     </div>
                                     <textarea class="">{
     "title": "hello world",
-    "summary": "first blog",
+    "summary": "first diary",
     "content": "### title",
     "tags": "java",
     "user_id": 1
@@ -264,7 +264,7 @@
                                             <td>string</td>
                                             <td>是</td>
                                             <td>摘要</td>
-                                            <td>first blog</td>
+                                            <td>first diary</td>
                                         </tr><tr>
                                             <td>content</td>
                                             <td>string</td>
@@ -295,7 +295,7 @@
         "commentSize": 0,
         "id": 1,
         "title": "hello world",
-        "summary": "first blog",
+        "summary": "first diary",
         "content": "### title",
         "tags": "html,css",
         "user_id": 1,
@@ -309,14 +309,14 @@
                         </div>                        
                         
                     </div><div class="api-one">
-                        <h3 id="b429fda7025c4d66968d4b189b301eef">delBlog</h3>
+                        <h3 id="b429fda7025c4d66968d4b189b301eef">delDiary</h3>
                         <p>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=b429fda7025c4d66968d4b189b301eef" class="label label-warning">在线测试</a>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=b429fda7025c4d66968d4b189b301eef" class="label label-warning">在线浏览</a>
                         </p>
                         <p>请求方式：DELETE</p>
                         <p>
-                            请求地址：http://{{dev}}/api/users/1/blog/3                        </p>
+                            请求地址：http://{{dev}}/api/users/1/diary/3                        </p>
                         
                         
                         
@@ -325,7 +325,7 @@
                         <p>详细说明：</p>
                         <p>
                         <div class="detail-info">
-                            <div>url格式：/api/users/:user_id/blog/:id</div>
+                            <div>url格式：/api/users/:user_id/diary/:id</div>
                         </div>
                         </p>
                         <p>返回示例：</p>
@@ -339,14 +339,14 @@
                         </div>                        
                         
                     </div><div class="api-one">
-                        <h3 id="9e678bc385ad4371828c13080f43384c">updateBlog</h3>
+                        <h3 id="9e678bc385ad4371828c13080f43384c">updateDiary</h3>
                         <p>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=9e678bc385ad4371828c13080f43384c" class="label label-warning">在线测试</a>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=9e678bc385ad4371828c13080f43384c" class="label label-warning">在线浏览</a>
                         </p>
                         <p>请求方式：PUT</p>
                         <p>
-                            请求地址：http://{{dev}}/api/users/1/blog/1                        </p>
+                            请求地址：http://{{dev}}/api/users/1/diary/1                        </p>
                         
                         
                         
@@ -355,7 +355,7 @@
                         <p>详细说明：</p>
                         <p>
                         <div class="detail-info">
-                            <div>url格式：/api/users/:user_id/blog/:id</div>
+                            <div>url格式：/api/users/:user_id/diary/:id</div>
                         </div>
                         </p>
                         <p>返回示例：</p>
@@ -369,14 +369,14 @@
                         </div>                        
                         
                     </div><div class="api-one">
-                        <h3 id="0f59daaafa83412cafac1fe936bcb2a7">getBlogById</h3>
+                        <h3 id="0f59daaafa83412cafac1fe936bcb2a7">getDiaryById</h3>
                         <p>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=0f59daaafa83412cafac1fe936bcb2a7" class="label label-warning">在线测试</a>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=0f59daaafa83412cafac1fe936bcb2a7" class="label label-warning">在线浏览</a>
                         </p>
                         <p>请求方式：GET</p>
                         <p>
-                            请求地址：http://{{dev}}/api/blog/1                        </p>
+                            请求地址：http://{{dev}}/api/diary/1                        </p>
                         
                         
                         
@@ -392,7 +392,7 @@
     "data": {
         "id": 1,
         "title": "hello world",
-        "summary": "first blog",
+        "summary": "first diary",
         "content": "### title",
         "readSize": 7,
         "commentSize": 1,
@@ -435,14 +435,14 @@
                         </div>                        
                         
                     </div><div class="api-one">
-                        <h3 id="4dd62e55c9ff4dee8e2c7df50ac95e5a">getBlogForEdit</h3>
+                        <h3 id="4dd62e55c9ff4dee8e2c7df50ac95e5a">getDiaryForEdit</h3>
                         <p>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=4dd62e55c9ff4dee8e2c7df50ac95e5a" class="label label-warning">在线测试</a>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=4dd62e55c9ff4dee8e2c7df50ac95e5a" class="label label-warning">在线浏览</a>
                         </p>
                         <p>请求方式：GET</p>
                         <p>
-                            请求地址：http://{{dev}}/api/blog/1/edit                        </p>
+                            请求地址：http://{{dev}}/api/diary/1/edit                        </p>
                         
                         
                         
@@ -458,7 +458,7 @@
     "data": {
         "id": 1,
         "title": "hello world",
-        "summary": "first blog",
+        "summary": "first diary",
         "content": "### title",
         "readSize": 1,
         "commentSize": 0,
@@ -488,7 +488,7 @@
                         </div>                        
                         
                     </div><div class="api-one">
-                        <h3 id="b1fb113f3c5f4063ab94e685a15edb0f">getBlogTags</h3>
+                        <h3 id="b1fb113f3c5f4063ab94e685a15edb0f">getDiaryTags</h3>
                         <p>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=b1fb113f3c5f4063ab94e685a15edb0f" class="label label-warning">在线测试</a>
                             <a target="_blank" href="http://apizza.cc/console/project/44ea03826855102ed76866ba6c30f0f5/browse?api=b1fb113f3c5f4063ab94e685a15edb0f" class="label label-warning">在线浏览</a>
@@ -776,7 +776,7 @@
                                     </div>
                                     <textarea class="">{
     "user_id": 1,
-    "blog_id": 1,
+    "diary_id": 1,
     "content": "hello world"
 }</textarea>
                                 </div>                                                                            
@@ -790,7 +790,7 @@
     "data": {
         "id": 1,
         "user_id": 1,
-        "blog_id": 1,
+        "diary_id": 1,
         "content": "hello world",
         "updated_at": "2018-03-14T04:37:04.936Z",
         "created_at": "2018-03-14T04:37:04.936Z"
@@ -830,7 +830,7 @@
         "content": "hello world",
         "created_at": "2018-03-14T04:55:03.000Z",
         "updated_at": "2018-03-14T04:55:03.000Z",
-        "blog_id": 2,
+        "diary_id": 2,
         "user_id": 1
     }
 }</code>

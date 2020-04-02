@@ -1,14 +1,14 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-class BlogController extends Controller {
+class DiaryController extends Controller {
   async create() {
     const {
       ctx,
     } = this;
     const body = ctx.request.body;
     body.user_id = 1;
-    const created = await ctx.service.blog.create(ctx.request.body);
+    const created = await ctx.service.diary.create(ctx.request.body);
     ctx.status = 201;
     ctx.body = created;
 
@@ -18,7 +18,7 @@ class BlogController extends Controller {
     const {
       ctx,
     } = this;
-    const res = await ctx.service.blog.index(ctx.query);
+    const res = await ctx.service.diary.index(ctx.query);
     ctx.body = res;
   }
 
@@ -28,7 +28,7 @@ class BlogController extends Controller {
     } = this;
     const id = ctx.params.id;
     const user_id = +ctx.params.user_id;
-    const res = await ctx.service.blog.del({
+    const res = await ctx.service.diary.del({
       id,
       user_id,
     });
@@ -43,7 +43,7 @@ class BlogController extends Controller {
     const id = ctx.params.id;
     const user_id = +ctx.params.user_id;
     const body = ctx.request.body;
-    ctx.body = await ctx.service.blog.update({
+    ctx.body = await ctx.service.diary.update({
       id,
       user_id,
       updates: body,
@@ -55,7 +55,7 @@ class BlogController extends Controller {
       ctx,
     } = this;
     const id = ctx.params.id;
-    ctx.body = await ctx.service.blog.find(id);
+    ctx.body = await ctx.service.diary.find(id);
   }
 
   async edit() {
@@ -63,14 +63,14 @@ class BlogController extends Controller {
       ctx,
     } = this;
     const id = ctx.params.id;
-    ctx.body = await ctx.service.blog.edit(id);
+    ctx.body = await ctx.service.diary.edit(id);
   }
 
   async tags() {
     const {
       ctx,
     } = this;
-    ctx.body = await ctx.service.blog.getTags();
+    ctx.body = await ctx.service.diary.getTags();
   }
 
   async archive() {
@@ -78,8 +78,8 @@ class BlogController extends Controller {
       ctx,
     } = this;
     const year = ctx.query.year;
-    ctx.body = await ctx.service.blog.archive(year);
+    ctx.body = await ctx.service.diary.archive(year);
   }
 }
 
-module.exports = BlogController;
+module.exports = DiaryController;

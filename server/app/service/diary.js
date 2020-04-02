@@ -6,13 +6,13 @@ const {
   SUCCESS,
   unique,
 } = require('../util/util');
-class BlogService extends Service {
-  async create(blog) {
+class DiaryService extends Service {
+  async create(diary) {
     const {
       ctx,
     } = this;
     try {
-      const res = await this.ctx.model.Blog.create(blog);
+      const res = await this.ctx.model.Diary.create(diary);
       return Object.assign({
         data: res,
       }, SUCCESS);
@@ -52,7 +52,7 @@ class BlogService extends Service {
         catalog_id: parseInt(catalog_id, 10),
       };
     }
-    const res = await this.ctx.model.Blog.findAndCountAll(Object.assign(options, {
+    const res = await this.ctx.model.Diary.findAndCountAll(Object.assign(options, {
       include: [{
         model: this.ctx.model.User,
         as: 'user',
@@ -75,17 +75,17 @@ class BlogService extends Service {
     id,
     user_id,
   }) {
-    const blog = await this.ctx.model.Blog.findById(id);
-    if (!blog) {
+    const diary = await this.ctx.model.Diary.findById(id);
+    if (!diary) {
       return Object.assign({
-        error_msg: 'blog not found',
+        error_msg: 'diary not found',
       }, ERROR);
-    } else if (blog.user_id !== user_id) {
+    } else if (diary.user_id !== user_id) {
       return Object.assign(ERROR, {
-        msg: 'not allowed to delete others blog',
+        msg: 'not allowed to delete others diary',
       });
     }
-    blog.destroy();
+    diary.destroy();
     return SUCCESS;
 
   }
@@ -95,23 +95,23 @@ class BlogService extends Service {
     user_id,
     updates,
   }) {
-    const blog = await this.ctx.model.Blog.findById(id);
-    if (!blog) {
+    const diary = await this.ctx.model.Diary.findById(id);
+    if (!diary) {
       return Object.assign(ERROR, {
-        msg: 'blog not found',
+        msg: 'diary not found',
       });
-    } else if (blog.user_id !== user_id) {
+    } else if (diary.user_id !== user_id) {
       return Object.assign(ERROR, {
-        msg: 'not allowed to modify others blog',
+        msg: 'not allowed to modify others diary',
       });
     }
-    blog.update(updates);
+    diary.update(updates);
     return SUCCESS;
 
   }
 
   async find(id) {
-    const blog = await this.ctx.model.Blog.findById(id, {
+    const diary = await this.ctx.model.Diary.findById(id, {
       include: [{
         model: this.ctx.model.User,
         as: 'user',
@@ -123,7 +123,7 @@ class BlogService extends Service {
       }, {
         model: this.ctx.model.Comment,
         as: 'comment',
-        attributes: [ 'id', 'content', 'created_at', 'updated_at' ],
+        attributes: [ 'id', 'content', 'created_at' ],
         include: [{
           model: this.ctx.model.User,
           attributes: [ 'username' ],
@@ -131,30 +131,30 @@ class BlogService extends Service {
       }, {
         model: this.ctx.model.Catalog,
         as: 'catalog',
-        attributes: [ 'id', 'name', 'created_at', 'updated_at' ],
+        attributes: [ 'id', 'name', 'created_at' ],
         include: [{
           model: this.ctx.model.User,
           attributes: [ 'username' ],
         }],
       }],
     });
-    blog.set('readSize', blog.get('readSize') + 1);
-    blog.increment('readSize').then().catch(err => {
+    diary.set('readSize', diary.get('readSize') + 1);
+    diary.increment('readSize').then().catch(err => {
       console.log(err);
     });
-    if (!blog) {
+    if (!diary) {
       return Object.assign(ERROR, {
-        msg: 'blog not found',
+        msg: 'diary not found',
       });
     }
     return Object.assign(SUCCESS, {
-      data: blog,
+      data: diary,
     });
 
   }
 
   async edit(id) {
-    const blog = await this.ctx.model.Blog.findById(id, {
+    const diary = await this.ctx.model.Diary.findById(id, {
       include: [{
         model: this.ctx.model.User,
         as: 'user',
@@ -168,37 +168,15 @@ class BlogService extends Service {
         as: 'catalog',
       }],
     });
-    if (!blog) {
+    if (!diary) {
       return Object.assign(ERROR, {
-        msg: 'blog not found',
+        msg: 'diary not found',
       });
     }
     return Object.assign(SUCCESS, {
-      data: blog,
+      data: diary,
     });
 
-  }
-
-  async getTags() {
-    const {
-      ctx,
-    } = this;
-    try {
-      const res = await ctx.model.Blog.findAndCountAll({
-        attributes: [ 'tags' ],
-      });
-      const arrTag = [];
-      res.rows.map(item => {
-        return arrTag.push(item.tags);
-      });
-      const tags = unique(arrTag.join(',').split(','));
-      return Object.assign(SUCCESS, {
-        tags,
-      });
-    } catch (error) {
-      ctx.status = 500;
-      throw (500);
-    }
   }
 
   async archive(year) {
@@ -214,7 +192,7 @@ class BlogService extends Service {
           msg: 'expected an param with year, password but got null',
         });
       }
-      const blogs = await ctx.model.Blog.findAndCountAll({
+      const diarys = await ctx.model.Diary.findAndCountAll({
         where: {
           created_at: {
             [Op.between]: [ new Date(`${year}-1-1`), new Date(`${year}-12-31 23:59`) ],
@@ -222,7 +200,7 @@ class BlogService extends Service {
         },
       });
       return Object.assign(SUCCESS, {
-        data: blogs,
+        data: diarys,
         year,
       });
 
@@ -233,4 +211,4 @@ class BlogService extends Service {
   }
 }
 
-module.exports = BlogService;
+module.exports = DiaryService;

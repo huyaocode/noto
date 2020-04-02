@@ -8,7 +8,6 @@ POST {{origin}}/api/users
 content-type: application/json
 
 {
-  "username": "hy",
-  "password": "123",
-  "authority_id": 1
+  "username": "u9",
+  "password": "123"
 }

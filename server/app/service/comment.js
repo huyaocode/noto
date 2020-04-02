@@ -7,7 +7,7 @@ const {
 } = require('../util/util');
 class CommentService extends Service {
   async create({
-    blog_id,
+    diary_id,
     user_id,
     content,
   }) {
@@ -15,11 +15,11 @@ class CommentService extends Service {
       ctx,
     } = this;
     try {
-      if (!content || !user_id || !blog_id) {
+      if (!content || !user_id || !diary_id) {
         ctx.status = 400;
         return Object.assign(ERROR, {
-          msg: `expected an object with content, user_id, blog_id but got: ${JSON.stringify({
-            blog_id,
+          msg: `expected an object with content, user_id, diary_id but got: ${JSON.stringify({
+            diary_id,
             user_id,
             content,
           })}`,
@@ -27,12 +27,12 @@ class CommentService extends Service {
       }
       const res = await ctx.model.Comment.create({
         user_id,
-        blog_id,
+        diary_id,
         content,
       });
       ctx.status = 201;
-      const blog = await ctx.model.Blog.findById(blog_id);
-      blog.increment('commentSize').then().catch(err => {
+      const diary = await ctx.model.Diary.findById(diary_id);
+      diary.increment('commentSize').then().catch(err => {
         console.log(err);
       });
       return Object.assign(SUCCESS, {
@@ -67,9 +67,9 @@ class CommentService extends Service {
           msg: 'you can not delete others comment',
         });
       }
-      const blog = await ctx.model.Blog.findById(comment.blog_id);
+      const diary = await ctx.model.Diary.findById(comment.diary_id);
       const res = await comment.destroy();
-      blog.decrement('commentSize').then().catch(err => {
+      diary.decrement('commentSize').then().catch(err => {
         console.log(err);
       });
       ctx.status = 200;

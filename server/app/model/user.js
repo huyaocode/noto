@@ -1,39 +1,41 @@
 'use strict';
 
 module.exports = app => {
-  const {
-    INTEGER,
-    STRING,
-    DATE,
-  } = app.Sequelize;
+  const { INTEGER, STRING, DATE } = app.Sequelize;
 
-  const User = app.model.define('user', {
-    id: {
-      type: INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  const User = app.model.define(
+    'user',
+    {
+      id: {
+        type: INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      username: STRING,
+      password: STRING,
+      created_at: DATE,
+      avatar: STRING,
+      profile: STRING,
+      authority: INTEGER
     },
-    username: {
-      type: STRING,
-    },
-    password: {
-      type: STRING,
-    },
-    created_at: DATE,
-    updated_at: DATE,
-  });
+    {
+      timestamps: false
+    }
+  );
 
   User.associate = function() {
-    app.model.User.hasMany(app.model.Blog, {
-      as: 'blogs',
-    });
-    app.model.User.hasMany(app.model.Catalog, {
-      as: 'catalogs',
+    app.model.User.hasMany(app.model.Diary, {
+      as: 'diaries'
     });
     app.model.User.hasMany(app.model.Comment, {
-      as: 'comments',
+      as: 'comments'
     });
-    app.model.User.belongsTo(app.model.Authority);
+    app.model.User.hasMany(app.model.Todo, {
+      as: 'todos'
+    });
+    app.model.User.hasMany(app.model.Calendar, {
+      as: 'calendar'
+    });
   };
 
   return User;

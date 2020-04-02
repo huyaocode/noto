@@ -1,6 +1,8 @@
 'use strict';
 
 const Service = require('egg').Service;
+const _ = require('lodash')
+
 const md5 = require('js-md5')
 const {
   ERROR,
@@ -28,17 +30,18 @@ class UserService extends Service {
         },
       });
       if (!userDB) {
-        const res = await this.ctx.model.User.create(user);
+        let res = await this.ctx.model.User.create(user);
         ctx.status = 201;
         return Object.assign(SUCCESS, {
-          data: res,
+          data: {
+            id: res.id,
+          }
         });
       }
       ctx.status = 406;
       return Object.assign(ERROR, {
         msg: 'username already exists',
       });
-
     } catch (error) {
       ctx.status = 500;
       throw (error);

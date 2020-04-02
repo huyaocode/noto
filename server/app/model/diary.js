@@ -8,7 +8,7 @@ module.exports = app => {
     DATE,
   } = app.Sequelize;
 
-  const Blog = app.model.define('blog', {
+  const Diary = app.model.define('diary', {
     id: {
       type: INTEGER,
       primaryKey: true,
@@ -21,38 +21,23 @@ module.exports = app => {
         max: 50,
       },
     },
-    summary: {
-      type: STRING,
-      validate: {
-        min: 2,
-        max: 255,
-      },
-    },
     content: {
       type: TEXT,
-    },
-    readSize: {
-      type: INTEGER,
-      defaultValue: 0,
     },
     commentSize: {
       type: INTEGER,
       defaultValue: 0,
     },
-    tags: {
-      type: STRING(100),
-    },
     created_at: DATE,
-    updated_at: DATE,
-
+  },{
+    'timestamps': false,
   });
 
-  Blog.associate = function() {
-    app.model.Blog.belongsTo(app.model.User);
-    app.model.Blog.belongsTo(app.model.Catalog);
-    app.model.Blog.hasMany(app.model.Comment, {
+  Diary.associate = function() {
+    app.model.Diary.belongsTo(app.model.User);
+    app.model.Diary.hasMany(app.model.Comment, {
       as: 'comment',
     });
   };
-  return Blog;
+  return Diary;
 };

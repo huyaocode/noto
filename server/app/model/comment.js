@@ -13,16 +13,15 @@ module.exports = app => {
       primaryKey: true,
       autoIncrement: true,
     },
-    content: {
-      type: STRING,
-    },
+    content: STRING,
     created_at: DATE,
-    updated_at: DATE,
+  },{
+    'timestamps': false,
   });
 
   Comment.associate = function() {
     app.model.Comment.belongsTo(app.model.User);
-    app.model.Comment.belongsTo(app.model.Blog);
+    app.model.Comment.belongsTo(app.model.Diary);
   };
 
   return Comment;
