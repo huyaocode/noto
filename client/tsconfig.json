@@ -1,50 +1,95 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
-        "esModuleInterop": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "jsx": "preserve",
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["src/*"],
-            "@Actions": ["src/Actions"],
-            "@Actions/*": ["src/Actions/*"],
-            "@Components/*": ["src/Components/*"],
-            "@Components": ["src/Components"],
-            "@Interfaces": ["src/Interfaces"],
-            "@Interfaces/*": ["src/Interfaces/*"],
-            "@Pages": ["src/pages"],
-            "@Pages/*": ["src/Pages/*"],
-            "@Reducers": ["src/Pages/*ducers"],
-            "@Reducers/*": ["src/Redux/Reducers/*"],
-            "@Redux": ["src/Redux"],
-            "@Redux/*": ["src/Redux/*"],
-            "@Server/*": ["server/*"],
-            "@Services": ["src/Services"],
-            "@Services/*": ["src/Services/*"],
-            "@Static/*": ["static/*"],
-            "@Styled/*": ["src/Styled/*"],
-            "@Test/*": ["test/*"]
-        }
-    },
-    "exclude": [
-        "node_modules",
-        "dist",
-        ".next",
-        "out",
-        "next.config.js",
-        ".babelrc",
-        "bundles",
-        "coverage",
-        "test/*"
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@Actions": [
+        "src/Actions"
+      ],
+      "@Actions/*": [
+        "src/Actions/*"
+      ],
+      "@Components/*": [
+        "src/Components/*"
+      ],
+      "@Components": [
+        "src/Components"
+      ],
+      "@Interfaces": [
+        "src/Interfaces"
+      ],
+      "@Interfaces/*": [
+        "src/Interfaces/*"
+      ],
+      "@Pages": [
+        "src/pages"
+      ],
+      "@Pages/*": [
+        "src/Pages/*"
+      ],
+      "@Reducers": [
+        "src/Pages/*ducers"
+      ],
+      "@Reducers/*": [
+        "src/Redux/Reducers/*"
+      ],
+      "@Redux": [
+        "src/Redux"
+      ],
+      "@Redux/*": [
+        "src/Redux/*"
+      ],
+      "@Server/*": [
+        "server/*"
+      ],
+      "@Services": [
+        "src/Services"
+      ],
+      "@Services/*": [
+        "src/Services/*"
+      ],
+      "@Static/*": [
+        "static/*"
+      ],
+
+      "@Test/*": [
+        "test/*"
+      ]
+    },
+    "strict": false
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next",
+    "out",
+    "next.config.js",
+    ".babelrc",
+    "bundles",
+    "coverage",
+    "test/*"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

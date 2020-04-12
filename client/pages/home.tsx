@@ -1,16 +1,11 @@
-// #region Local Imports
 import Home from "@Pages/home";
 import { withTranslation } from "@Server/i18n";
-// #endregion Local Imports
-
-// #region Interface Imports
 import { ReduxNextPageContext } from "@Interfaces";
-// #endregion Interface Imports
+import { DiaryApi } from "@/API/Diary";
 
-Home.getInitialProps = async (
-    ctx: ReduxNextPageContext
-) => {
-    return { namespacesRequired: ["common"] };
+Home.getInitialProps = async (ctx: ReduxNextPageContext) => {
+    const diaryList = await DiaryApi.GetIndexDiary();
+    return { namespacesRequired: ["common"], diaryList };
 };
 
-export default  withTranslation("common")(Home);
+export default withTranslation("common")(Home);

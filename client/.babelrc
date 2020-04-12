@@ -16,8 +16,7 @@
                     "@Redux": "./src/Redux",
                     "@API": "./src/API",
                     "@Server": "./server",
-                    "@Static": "./static",
-                    "@Styled": "./src/Styled"
+                    "@Static": "./static"
                 }
             }
         ],

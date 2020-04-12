@@ -1,0 +1,23 @@
+import { Dispatch } from "redux";
+import ActionType from "./ActionTypes";
+
+export const CommonActions = {
+    SetActiveMenu: (payload: string) => ({
+        payload,
+        type: ActionType.Common.SetActiveMenu,
+    }),
+    // GetApod: (payload: {params: {}}) => async (
+    //     dispatch: Dispatch
+    // ) => {
+    //     const result = await PlanetaryService.GetPlanetImage({
+    //         params: payload.params,
+    //     });
+
+    //     dispatch({
+    //         payload: {
+    //             image: result,
+    //         },
+    //         type: ActionType.Home.SetReducer,
+    //     });
+    // },
+};

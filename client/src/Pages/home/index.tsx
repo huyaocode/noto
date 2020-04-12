@@ -1,17 +1,21 @@
-// #region Global Imports
-import React, { useState } from "react";
+import React from "react";
 import { NextPage } from "next";
 import { WithTranslation } from "next-i18next";
-import { NamespacesRequiredProps } from "@Interfaces";
+import { NamespacesRequiredProps, IDiaryList } from "@Interfaces";
 import "./styles.scss";
-import { PageLayout } from "@/Components";
-// #endregion Local Imports
+import { PageLayout, DiaryList } from "@/Components";
 
-const Home: NextPage<WithTranslation, NamespacesRequiredProps> = ({
-    t,
-    i18n,
-}) => {
-    return <PageLayout t={t} i18n={i18n}>哈哈哈哈</PageLayout>;
+const Home: NextPage<
+    WithTranslation & { diaryList: IDiaryList },
+    NamespacesRequiredProps
+> = ({ t, i18n, diaryList }) => {
+    // TODO 这里 console 两次
+    console.log('diaryList', diaryList)
+    return (
+        <PageLayout t={t} i18n={i18n}>
+            <DiaryList diaryList={diaryList} />
+        </PageLayout>
+    );
 };
 
 export default Home;
