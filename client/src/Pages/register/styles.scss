@@ -1,0 +1,17 @@
+.register-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    width: 300px;
+    text-align: center;
+
+  .logo {
+    margin-right: 0;
+    margin-bottom: 25px;
+  }
+
+  .register-form-button {
+      width: 100%;
+  }
+}

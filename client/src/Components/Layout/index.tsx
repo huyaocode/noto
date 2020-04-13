@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout, Menu } from "antd";
 import Setting from "./Setting";
+import Logo from "./Logo";
 import "./styles.scss";
 
 import { EditIcon, TodolistIcon } from "@Static/icons";
@@ -10,10 +11,7 @@ const { Header } = Layout;
 
 export const PageLayout = ({ t, i18n, children }) => {
     const router = useRouter();
-
-    const logoClicked = () => {
-        Router.push("/");
-    };
+    
     const editDiary = () => {
         Router.push("/edit");
     };
@@ -25,9 +23,7 @@ export const PageLayout = ({ t, i18n, children }) => {
         <Layout className="layout">
             <Header className="header" style={{ backgroundColor: "#fff" }}>
                 <div className="content">
-                    <div className="logo">
-                        <h1 onClick={() => logoClicked()}>NOTO日记</h1>
-                    </div>
+                    <Logo t ={t}/>
                     <Menu mode="horizontal" selectedKeys={[router.pathname]}>
                         <Menu.Item key="/edit" onClick={() => editDiary()}>
                             <EditIcon />

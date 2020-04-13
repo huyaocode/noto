@@ -1,7 +1,11 @@
-
 export interface User {
-  id: string;
-  username: string;
+    id: string;
+    username: string;
+    nickname: string;
+    created_at: Date;
+    avatar?: string;
+    profile?: string;
+    authority?: string;
 }
 
 export interface IDiary {
@@ -14,7 +18,7 @@ export interface IDiary {
     user: User;
 }
 
-export interface IDiaryList{
-  count: number;
-  rows: IDiary[];
+export interface IDiaryList {
+    count: number;
+    rows: IDiary[];
 }

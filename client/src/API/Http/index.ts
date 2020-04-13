@@ -38,6 +38,8 @@ export const Http = {
                 headers: {
                     "content-type": "application/json",
                 },
+                credentials: 'include', 
+                mode: 'cors',
                 method: `${methodType}`,
             })
                 .then(async response => {
