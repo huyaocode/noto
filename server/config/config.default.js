@@ -14,7 +14,7 @@ module.exports = appInfo => {
       charset: 'utf8mb4',
     },
     database: 'noto_db',
-    host: 'localhost',
+    host: '127.0.0.1',
     port: '3306',
     username: 'root',
     password: 'root',
@@ -25,10 +25,12 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
-    domainWhiteList: [ ],
+    domainWhiteList: ['*', 'http://127.0.0.1:3000'],
   };
 
   config.cors = {
+    origin: 'http://127.0.0.1:3000',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
     credentials: true,
   };
 

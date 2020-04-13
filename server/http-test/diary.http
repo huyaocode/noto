@@ -1,24 +1,27 @@
 @origin = http://127.0.0.1:8000
 
-### getDiary
+### index
 GET {{origin}}/api/diary
 
-### createDiary
+### create
 POST {{origin}}/api/diary
 content-type: application/json
 
 {
     "title": "diary-2",
-    "content": "使用 REST ；ask的肌肤",
+    "content": "222222222222222222",
     "user_id": 1
 }
 
-### updateDiary
-PUT {{origin}}/api/users/1/diary/1
+### update
+PUT {{origin}}/api/users/3/diary/3
 content-type: application/json
 
 {
     "title": "hello world",
-    "content": "更新了",
-    "user_id": 1
+    "content": "更新了!!!",
+    "user_id": 3
 }
+
+### delete
+DELETE {{origin}}/api/users/4/diary/4

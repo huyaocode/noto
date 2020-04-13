@@ -13,6 +13,7 @@ module.exports = app => {
       },
       username: STRING,
       password: STRING,
+      nickname: STRING,
       created_at: DATE,
       avatar: STRING,
       profile: STRING,

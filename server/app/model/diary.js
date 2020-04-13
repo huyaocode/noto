@@ -6,6 +6,7 @@ module.exports = app => {
     STRING,
     TEXT,
     DATE,
+    BOOLEAN,
   } = app.Sequelize;
 
   const Diary = app.model.define('diary', {
@@ -21,6 +22,7 @@ module.exports = app => {
         max: 50,
       },
     },
+    private: BOOLEAN,
     content: {
       type: TEXT,
     },

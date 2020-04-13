@@ -3,11 +3,20 @@
 ### getUserById
 GET {{origin}}/api/users/1
 
-### createUser
+### create
 POST {{origin}}/api/users
 content-type: application/json
 
 {
-  "username": "u9",
+  "username": "hy",
+  "password": "123"
+}
+
+### login
+POST {{origin}}/api/users/login
+content-type: application/json
+
+{
+  "username": "hy",
   "password": "123"
 }

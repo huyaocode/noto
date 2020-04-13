@@ -6,12 +6,9 @@ class DiaryController extends Controller {
     const {
       ctx,
     } = this;
-    const body = ctx.request.body;
-    body.user_id = 1;
     const created = await ctx.service.diary.create(ctx.request.body);
     ctx.status = 201;
     ctx.body = created;
-
   }
 
   async index() {
