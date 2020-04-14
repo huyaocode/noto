@@ -6,7 +6,7 @@ import Logo from "@/Components/Layout/Logo";
 import "./styles.scss";
 import Router from "next/router";
 
-import { Form, Icon, Input, Button } from "antd";
+import { Form, Icon, Input, Button, message } from "antd";
 import { UserApi } from "@/API/User";
 
 const LoginForm = ({ form }: { form: any }) => {
@@ -15,9 +15,15 @@ const LoginForm = ({ form }: { form: any }) => {
         e.preventDefault();
         form.validateFields(async (err, values) => {
             if (!err) {
-                console.log("Received values of form: ", values);
-                const res = await UserApi.Login(values)
-                console.log('登录：', res)
+                const {msg, data} = await UserApi.Login(values)
+                localStorage.setItem('user',JSON.stringify(data))
+                if(msg == 'success') {
+                    Router.push('/');
+                } else if(msg === 'password is error') {
+                    message.error('Password error !')
+                } else if(msg === 'username is error') {
+                    message.error('Email error !')
+                }
             }
         });
     };
@@ -29,18 +35,18 @@ const LoginForm = ({ form }: { form: any }) => {
                     rules: [
                         {
                             required: true,
-                            message: "Please input your username!",
+                            message: "Please input your email !",
                         },
                     ],
                 })(
                     <Input
                         prefix={
                             <Icon
-                                type="user"
+                                type="mail"
                                 style={{ color: "rgba(0,0,0,.25)" }}
                             />
                         }
-                        placeholder="Username"
+                        placeholder="Email"
                     />
                 )}
             </Form.Item>

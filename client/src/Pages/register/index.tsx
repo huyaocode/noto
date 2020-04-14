@@ -6,16 +6,24 @@ import Logo from "@/Components/Layout/Logo";
 import "./styles.scss";
 import Router from "next/router";
 
-import { Form, Icon, Input, Button } from "antd";
+import { Form, Icon, Input, Button, message } from "antd";
+import { UserApi } from "@/API/User";
 
 const RegisterForm = ({ form }: { form: any }) => {
     const { getFieldDecorator } = form;
 
     const handleSubmit = e => {
         e.preventDefault();
-        form.validateFields((err, values) => {
+        form.validateFields(async (err, values) => {
             if (!err) {
-                console.log("Received values of form: ", values);
+                const {msg} = await UserApi.Register(values)
+                if(msg == 'success') {
+                    const {data} = await UserApi.Login(values);
+                    localStorage.setItem('user',JSON.stringify(data))
+                    Router.push('/')
+                } else if(msg ==='username already exists') {
+                    message.error('Email already exists.')
+                }
             }
         });
     };

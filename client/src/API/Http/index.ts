@@ -43,7 +43,7 @@ export const Http = {
                 method: `${methodType}`,
             })
                 .then(async response => {
-                    if (response.status === 200) {
+                    if (response.status >= 200 && response.status < 300) {
                         return response.json().then(resolve);
                     }
                     return reject(response);

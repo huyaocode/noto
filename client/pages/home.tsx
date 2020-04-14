@@ -4,8 +4,8 @@ import { ReduxNextPageContext } from "@Interfaces";
 import { DiaryApi } from "@/API/Diary";
 
 Home.getInitialProps = async (ctx: ReduxNextPageContext) => {
-    // const diaryList = await DiaryApi.GetIndexDiary();
-    return { namespacesRequired: ["common"] };
+    const diaryList = await DiaryApi.GetIndexDiary();
+    return { namespacesRequired: ["common"], diaryList };
 };
 
 export default withTranslation("common")(Home);

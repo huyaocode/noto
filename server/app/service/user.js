@@ -23,6 +23,7 @@ class UserService extends Service {
       const md5Passwd = md5(user.password)
       user = Object.assign(user, {
         password: md5Passwd,
+        created_at: Date.now(),
       });
       const userDB = await ctx.model.User.findOne({
         where: {
@@ -38,7 +39,7 @@ class UserService extends Service {
           }
         });
       }
-      ctx.status = 406;
+      ctx.status = 200;
       return Object.assign(ERROR, {
         msg: 'username already exists',
       });
@@ -130,7 +131,7 @@ class UserService extends Service {
         });
         return Object.assign(SUCCESS, {
           data: Object.assign(user, {
-            password: '',
+            password: null,
           }),
         });
       }
