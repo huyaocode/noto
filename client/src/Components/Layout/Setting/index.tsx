@@ -9,14 +9,25 @@ const logout = () => {
     Router.push("/login");
 };
 
-const Setting = ({ t }) => {
+const nextLanguageMap = {
+    zh: "English",
+    en: "中文",
+};
+
+const Setting = ({ t, i18n }) => {
     let user: any = {};
     if (typeof localStorage !== "undefined") {
         user = JSON.parse(localStorage.getItem("user")) || {};
+        // cookie过期了
         if (user.id && !/user_id/.test(document.cookie)) {
             Router.push("/login");
         }
     }
+
+    const changeLanguage = () => {
+        const nextlang = i18n.language === "zh" ? "en" : "zh";
+        i18n.changeLanguage(nextlang);
+    };
 
     const menu = (
         <Menu>
@@ -27,19 +38,14 @@ const Setting = ({ t }) => {
     );
     return (
         <div className="setting">
-            <div className="language">English</div>
+            <div className="language" onClick={() => changeLanguage()}>
+                {nextLanguageMap[i18n.language]}
+            </div>
             {user.id ? (
-                <Dropdown overlay={menu}>
-                    <a
-                        className="ant-dropdown-link"
-                        onClick={e => e.preventDefault()}
-                    >
-                        {user.nickname}
-                    </a>
-                </Dropdown>
+                <Dropdown overlay={menu} ><a className="login">{user.nickname}</a></Dropdown>
             ) : (
                 <div className="login" onClick={() => Router.push("/login")}>
-                    登录
+                    {t('login')}
                 </div>
             )}
         </div>

@@ -34,7 +34,7 @@ export const PageLayout = ({ t, i18n, children }) => {
                             记待办
                         </Menu.Item>
                     </Menu>
-                    <Setting t={t} />
+                    <Setting t={t} i18n={i18n}/>
                 </div>
             </Header>
             <main className="container">{children}</main>

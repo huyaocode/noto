@@ -1,5 +1,5 @@
 import Home from "@Pages/home";
-import { withTranslation } from "@Server/i18n";
+import { withCommonNSTranslation } from "@Server/i18n";
 import { ReduxNextPageContext } from "@Interfaces";
 import { DiaryApi } from "@/API/Diary";
 
@@ -8,4 +8,4 @@ Home.getInitialProps = async (ctx: ReduxNextPageContext) => {
     return { namespacesRequired: ["common"], diaryList };
 };
 
-export default withTranslation("common")(Home);
+export default withCommonNSTranslation(Home);
