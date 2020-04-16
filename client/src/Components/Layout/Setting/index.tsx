@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { Menu, Dropdown } from "antd";
 import "./styles.scss";
 import Router from "next/router";

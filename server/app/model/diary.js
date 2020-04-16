@@ -3,7 +3,6 @@
 module.exports = app => {
   const {
     INTEGER,
-    STRING,
     TEXT,
     DATE,
     BOOLEAN,
@@ -14,13 +13,6 @@ module.exports = app => {
       type: INTEGER,
       primaryKey: true,
       autoIncrement: true,
-    },
-    title: {
-      type: STRING,
-      validate: {
-        min: 2,
-        max: 50,
-      },
     },
     private: BOOLEAN,
     content: {

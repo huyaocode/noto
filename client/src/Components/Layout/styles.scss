@@ -59,7 +59,8 @@ $pagePagging: 20px;
         padding: 30px $pagePagging;
         margin: 0 auto;
         width: $pageWidth;
-        height: 100%;
+        // min-height: 100%;
+        flex: 1;
     }
     footer.footer {
         width: 100%;

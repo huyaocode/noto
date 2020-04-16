@@ -4,7 +4,6 @@ const Service = require('egg').Service;
 const {
   ERROR,
   SUCCESS,
-  unique,
 } = require('../util/util');
 class DiaryService extends Service {
   async create(diary) {
@@ -13,11 +12,8 @@ class DiaryService extends Service {
     } = this;
     try {
       diary.created_at = Date.now();
-      diary.private = false;
-      const res = await this.ctx.model.Diary.create(diary);
-      return Object.assign({
-        data: res,
-      }, SUCCESS);
+      await this.ctx.model.Diary.create(diary);
+      return Object.assign(SUCCESS);
     } catch (error) {
       ctx.status = 500;
       throw (error);
