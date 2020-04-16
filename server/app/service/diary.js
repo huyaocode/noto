@@ -36,20 +36,16 @@ class DiaryService extends Service {
       order: [
         [ order_by, order.toUpperCase() ],
       ],
+      where: {
+        private: false
+      }
     };
-    // if (tags) {
-    //   options.where = {
-    //     tags: {
-    //       [Op.like]: `%${tags}%`,
-    //     },
-    //   };
-    // }
+
     const res = await this.ctx.model.Diary.findAndCountAll(Object.assign(options, {
       include: [{
         model: this.ctx.model.User,
         as: 'user',
-        attributes: [ 'id', 'username' ],
-        
+        attributes: [ 'id', 'nickname','avatar' ],
       }],
     }));
     return Object.assign(SUCCESS, {
