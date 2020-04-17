@@ -1,0 +1,70 @@
+.diary-item {
+  padding: 20px 0 0 0;
+  border-bottom: 1px dashed #d5d5d5;
+  width: 800px;
+  .diary {
+    word-break: break-all;
+    display: flex;
+    .avatar {
+      width: 64px;
+      height: 64px;
+      background-color: #efefef;
+      border-radius: 3px;
+    }
+    .right {
+      padding-left: 10px;
+      flex: 1;
+      .info {
+        padding-bottom: 5px;
+        .time {
+          padding-left: 10px;
+          color: #aaa;
+          font-size: 12px;
+        }
+      }
+      .content {
+        font-size: 15px;
+        word-spacing: 3px;
+        letter-spacing: 1px;
+      }
+      .communication {
+        display: flex;
+        justify-content: flex-end;
+        padding-bottom: 10px;
+        .star-btn {
+          margin-right:10px;
+          cursor: pointer;
+        }
+        .comment-btn {
+          cursor: pointer;
+          user-select: none;
+          .anticon {
+            margin-right: 5px;
+          }
+        }
+        
+      }
+    }
+  }
+
+  .comment-list {
+    .comment-item {
+      display: flex;
+      padding: 5px 0;
+      .avatar {
+        margin-top: 5px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+  
+  .comment {
+    display: flex;
+    padding: 10px 0 20px 0;
+    align-items: flex-end;
+    .btn {
+      margin-left: 15px;
+    }
+  }
+}

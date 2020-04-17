@@ -54,29 +54,6 @@ class DiaryController extends Controller {
     const id = ctx.params.id;
     ctx.body = await ctx.service.diary.find(id);
   }
-
-  async edit() {
-    const {
-      ctx,
-    } = this;
-    const id = ctx.params.id;
-    ctx.body = await ctx.service.diary.edit(id);
-  }
-
-  async tags() {
-    const {
-      ctx,
-    } = this;
-    ctx.body = await ctx.service.diary.getTags();
-  }
-
-  async archive() {
-    const {
-      ctx,
-    } = this;
-    const year = ctx.query.year;
-    ctx.body = await ctx.service.diary.archive(year);
-  }
 }
 
 module.exports = DiaryController;

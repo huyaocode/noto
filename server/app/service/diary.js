@@ -22,14 +22,10 @@ class DiaryService extends Service {
 
   async index({
     offset = 0,
-    limit = 5,
+    limit = 10,
     order_by = 'created_at',
     order = 'DESC',
-    // tags = '',
   }) {
-    const {
-      Op,
-    } = this.app.Sequelize;
     const options = {
       offset: parseInt(offset),
       limit: parseInt(limit),
@@ -69,7 +65,6 @@ class DiaryService extends Service {
     }
     diary.destroy();
     return SUCCESS;
-
   }
 
   async update({
@@ -89,7 +84,6 @@ class DiaryService extends Service {
     }
     diary.update(updates);
     return SUCCESS;
-
   }
 
   async find(id) {
@@ -132,64 +126,6 @@ class DiaryService extends Service {
     return Object.assign(SUCCESS, {
       data: diary,
     });
-
-  }
-
-  async edit(id) {
-    const diary = await this.ctx.model.Diary.findById(id, {
-      include: [{
-        model: this.ctx.model.User,
-        as: 'user',
-        attributes: [ 'id', 'username' ],
-        include: [{
-          model: this.ctx.model.Authority,
-          attributes: [ 'id', 'name' ],
-        }],
-      }, {
-        model: this.ctx.model.Catalog,
-        as: 'catalog',
-      }],
-    });
-    if (!diary) {
-      return Object.assign(ERROR, {
-        msg: 'diary not found',
-      });
-    }
-    return Object.assign(SUCCESS, {
-      data: diary,
-    });
-
-  }
-
-  async archive(year) {
-    const {
-      ctx,
-    } = this;
-    const {
-      Op,
-    } = this.app.Sequelize;
-    try {
-      if (!year) {
-        return Object.assign(ERROR, {
-          msg: 'expected an param with year, password but got null',
-        });
-      }
-      const diarys = await ctx.model.Diary.findAndCountAll({
-        where: {
-          created_at: {
-            [Op.between]: [ new Date(`${year}-1-1`), new Date(`${year}-12-31 23:59`) ],
-          },
-        },
-      });
-      return Object.assign(SUCCESS, {
-        data: diarys,
-        year,
-      });
-
-    } catch (error) {
-      ctx.status = 500;
-      throw (error);
-    }
   }
 }
 

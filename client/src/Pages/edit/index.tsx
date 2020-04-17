@@ -81,6 +81,9 @@ const Edit: NextPage<WithTranslation, NamespacesRequiredProps> = ({
 
     const saveDiary = async () => {
         try {
+            if(!content) {
+                return
+            }
             await DiaryApi.createDiary(content, privated);
             localStorage.setItem("diaryDraft", "");
             Router.push("/");

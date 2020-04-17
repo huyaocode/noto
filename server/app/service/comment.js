@@ -5,6 +5,8 @@ const {
   ERROR,
   SUCCESS,
 } = require('../util/util');
+const getUIdFromCookie = require('../util/getUIdFromCookie')
+
 class CommentService extends Service {
   async create({
     diary_id,
@@ -25,19 +27,20 @@ class CommentService extends Service {
           })}`,
         });
       }
-      const res = await ctx.model.Comment.create({
+      
+      await ctx.model.Comment.create({
+        created_at: Date.now(),
         user_id,
         diary_id,
         content,
       });
+
       ctx.status = 201;
       const diary = await ctx.model.Diary.findById(diary_id);
       diary.increment('commentSize').then().catch(err => {
         console.log(err);
       });
-      return Object.assign(SUCCESS, {
-        data: res,
-      });
+      return Object.assign(SUCCESS);
 
     } catch (error) {
       ctx.status = 500;
@@ -81,6 +84,29 @@ class CommentService extends Service {
       ctx.status = 500;
       throw (error);
     }
+  }
+
+  async get({
+    diary_id
+  }) {    
+    const options = {
+      where: {
+        diary_id
+      },
+      order: [
+        [ 'created_at'],
+      ],
+    };
+    const res = await this.ctx.model.Comment.findAndCountAll(Object.assign(options, {
+      include: [{
+        model: this.ctx.model.User,
+        as: 'user',
+        attributes: [ 'id', 'nickname','avatar' ],
+      }],
+    }));
+    return Object.assign(SUCCESS, {
+      data: res,
+    });
   }
 }
 

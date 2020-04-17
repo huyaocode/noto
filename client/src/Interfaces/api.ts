@@ -22,3 +22,21 @@ export interface IDiaryList {
     count: number;
     rows: IDiary[];
 }
+
+export interface IComment {
+    id: string;
+    content: string;
+    created_at: Date;
+    user_id: string;
+    diary_id: string;
+    user: {
+        id: string;
+        nickname: string;
+        avatar: string;
+    };
+}
+
+export interface ICommentList {
+    count: number;
+    rows: IComment[];
+}
