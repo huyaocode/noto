@@ -31,7 +31,7 @@ const Setting = ({ t, i18n }) => {
 
     const menu = (
         <Menu>
-            <Menu.Item>我的日记</Menu.Item>
+            <Menu.Item  onClick={() => Router.push(`/user/${user.id}`)}>我的日记</Menu.Item>
             <Menu.Item>我的信息</Menu.Item>
             <Menu.Item onClick={() => logout()}>退出登录</Menu.Item>
         </Menu>

@@ -3,6 +3,14 @@
 ### index
 GET {{origin}}/api/diary
 
+### 获取某用户的日记
+GET {{origin}}/api/user/1/diary
+
+
+### 获取某用户的私密日记
+GET {{origin}}/api/user/1/diary?private
+
+
 ### create
 POST {{origin}}/api/diary
 content-type: application/json

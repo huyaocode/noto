@@ -1,26 +1,23 @@
 'use strict';
 
 const Service = require('egg').Service;
-const _ = require('lodash')
+const _ = require('lodash');
 
-const md5 = require('js-md5')
-const {
-  ERROR,
-  SUCCESS,
-} = require('../util/util');
+const md5 = require('js-md5');
+const { ERROR, SUCCESS } = require('../util/util');
 class UserService extends Service {
   async create(user) {
-    const {
-      ctx,
-    } = this;
+    const { ctx } = this;
     try {
       if (!user.username || !user.password) {
         ctx.status = 400;
         return Object.assign(ERROR, {
-          msg: `expected an object with username, password but got: ${JSON.stringify(user)}`,
+          msg: `expected an object with username, password but got: ${JSON.stringify(
+            user
+          )}`,
         });
       }
-      const md5Passwd = md5(user.password)
+      const md5Passwd = md5(user.password);
       user = Object.assign(user, {
         password: md5Passwd,
         created_at: Date.now(),
@@ -36,7 +33,7 @@ class UserService extends Service {
         return Object.assign(SUCCESS, {
           data: {
             id: res.id,
-          }
+          },
         });
       }
       ctx.status = 200;
@@ -45,14 +42,12 @@ class UserService extends Service {
       });
     } catch (error) {
       ctx.status = 500;
-      throw (error);
+      throw error;
     }
   }
 
   async del(id) {
-    const {
-      ctx,
-    } = this;
+    const { ctx } = this;
     try {
       const user = await ctx.model.User.findById(id);
       if (!user) {
@@ -66,16 +61,13 @@ class UserService extends Service {
       return Object.assign(SUCCESS, {
         data: user,
       });
-
     } catch (error) {
       ctx.throw(500);
     }
   }
 
   async update({ id, user }) {
-    const {
-      ctx,
-    } = this;
+    const { ctx } = this;
     try {
       const userDB = await ctx.model.User.findById(id);
       if (!userDB) {
@@ -84,7 +76,7 @@ class UserService extends Service {
           msg: 'user not found',
         });
       }
-      const md5Passwd = md5(user.password)
+      const md5Passwd = md5(user.password);
       user = Object.assign(user, {
         password: md5Passwd,
       });
@@ -93,20 +85,17 @@ class UserService extends Service {
       return Object.assign(SUCCESS, {
         data: res,
       });
-
     } catch (error) {
       ctx.throw(500);
     }
   }
 
   async login({ username, password }) {
-    const {
-      ctx,
-    } = this;
+    const { ctx } = this;
     try {
       const user = await ctx.model.User.findOne({
         where: {
-          username: username.toString()
+          username: username.toString(),
         },
       });
       if (!user) {
@@ -116,7 +105,7 @@ class UserService extends Service {
       }
       if (md5(password) === user.password) {
         ctx.status = 200;
-        const hash = md5.hex(password)
+        const hash = md5.hex(password);
         ctx.cookies.set('token', hash, {
           httpOnly: false,
           signed: false,
@@ -138,25 +127,16 @@ class UserService extends Service {
       return Object.assign(ERROR, {
         msg: 'password is error',
       });
-
-
     } catch (error) {
       ctx.status = 500;
-      throw (error);
+      throw error;
     }
   }
 
   async find(id) {
-    const {
-      ctx,
-    } = this;
+    const { ctx } = this;
     try {
-      const user = await ctx.model.User.findById(id, {
-        include: [{
-          model: ctx.model.Authority,
-          attributes: [ 'id', 'name' ],
-        }],
-      });
+      const user = await ctx.model.User.findById(id);
       if (!user) {
         ctx.status = 401;
         return Object.assign(ERROR, {
@@ -167,9 +147,8 @@ class UserService extends Service {
       return Object.assign(SUCCESS, {
         data: user,
       });
-
     } catch (error) {
-      throw (500);
+      throw 500;
     }
   }
 }

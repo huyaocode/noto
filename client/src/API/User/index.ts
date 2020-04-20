@@ -1,10 +1,13 @@
 import { Http } from "@/API/Http";
-import { User } from "@/Interfaces";
+import { IUser } from "@/Interfaces";
 
-interface IUserRes {msg: string; data: User}
+interface IUserRes {
+    msg: string;
+    data: IUser;
+}
 
 export const UserApi = {
-    Login: async (user: {
+    login: async (user: {
         username: string;
         password: string;
     }): Promise<IUserRes> => {
@@ -19,15 +22,14 @@ export const UserApi = {
         } catch (error) {}
         return response;
     },
-    Register: async (user: {
+    register: async (user: {
         nickname: string;
         username: string;
         password: string;
     }) => {
-
         interface IRegisterRes {
-            msg: string, 
-            data: {id: string}
+            msg: string;
+            data: { id: string };
         }
 
         let response: IRegisterRes;
@@ -38,8 +40,15 @@ export const UserApi = {
                 null,
                 user
             );
-        } catch (error) {
-        }
+        } catch (error) {}
         return response;
-    }
+    },
+    getUserById: async (userId: string) => {
+        try {
+            const res = await Http.Request<{data: IUser}>("GET", `/api/users/${userId}`);
+            return res.data;
+        } catch (error) {
+            return {};
+        }
+    },
 };

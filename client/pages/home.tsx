@@ -5,7 +5,7 @@ import { DiaryApi } from "@/API/Diary";
 
 Home.getInitialProps = async (ctx: ReduxNextPageContext) => {
     const diaryList = await DiaryApi.getIndexDiary();
-    return { namespacesRequired: ["common"], diaryList };
+    return { namespacesRequired: ["common"], diaryList: diaryList.rows };
 };
 
 export default withCommonNSTranslation(Home);

@@ -1,6 +1,6 @@
 /**
  * 使用方法：
- * const userId = getUIdFromCookie(this.ctx.request.header.cookie)
+ * const curUserId = getUIdFromCookie(this.ctx.request.header.cookie)
  */
 function getUIdFromCookie(cookie) {
   const res = /user_id=(\d)/.exec(cookie)

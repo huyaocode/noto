@@ -51,8 +51,8 @@ class DiaryController extends Controller {
     const {
       ctx,
     } = this;
-    const id = ctx.params.id;
-    ctx.body = await ctx.service.diary.find(id);
+    const user_id = ctx.params.user_id;
+    ctx.body = await ctx.service.diary.findByUserId(user_id, ctx.querystring === 'private');
   }
 }
 

@@ -1,7 +1,7 @@
 .diary-item {
   padding: 20px 0 0 0;
   border-bottom: 1px dashed #d5d5d5;
-  width: 800px;
+  width: 700px;
   .diary {
     word-break: break-all;
     display: flex;
@@ -10,14 +10,17 @@
       height: 64px;
       background-color: #efefef;
       border-radius: 3px;
+      cursor: pointer;
     }
     .right {
       padding-left: 10px;
       flex: 1;
       .info {
+        .username {
+          padding-right: 10px;
+        }
         padding-bottom: 5px;
         .time {
-          padding-left: 10px;
           color: #aaa;
           font-size: 12px;
         }

@@ -1,15 +1,16 @@
 import React from "react";
 import "./styles.scss";
-import { IDiaryList } from "@Interfaces";
+import { IDiary } from "@Interfaces";
 import { DiaryItem } from './DiaryItem/index';
 
-export const DiaryList: React.FC<{ diaryList: IDiaryList }> = ({
+export const DiaryList: React.FC<{ diaryList: IDiary[],  showAvatar?: boolean }> = ({
     diaryList,
+    showAvatar = true
 }) => {
     return (
         <>
-            {diaryList.rows.map(
-                diary => <DiaryItem diary={diary} key={diary.id} />
+            {diaryList.map(
+                diary => <DiaryItem diary={diary} key={diary.id} showAvatar={showAvatar} />
             )}
         </>
     );

@@ -15,7 +15,7 @@ const LoginForm = ({ form }: { form: any }) => {
         e.preventDefault();
         form.validateFields(async (err, values) => {
             if (!err) {
-                const {msg, data} = await UserApi.Login(values)
+                const {msg, data} = await UserApi.login(values)
                 localStorage.setItem('user',JSON.stringify(data))
                 if(msg == 'success') {
                     Router.push('/');

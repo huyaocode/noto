@@ -1,5 +1,5 @@
 import { Http } from "@/API/Http";
-import { IDiaryList, User, ICommentList } from "@/Interfaces";
+import { IDiaryList, IUser, ICommentList } from "@/Interfaces";
 
 export const DiaryApi = {
     getIndexDiary: async (): Promise<IDiaryList> => {
@@ -19,7 +19,7 @@ export const DiaryApi = {
         return response;
     },
     createDiary: async (content, privated) => {
-        const user: User = JSON.parse(localStorage.getItem("user"));
+        const user: IUser = JSON.parse(localStorage.getItem("user"));
         await Http.Request("POST", "/api/diary", null, {
             user_id: user.id,
             content,
@@ -27,7 +27,7 @@ export const DiaryApi = {
         });
     },
     addComment: async (diary_id,  content) => {
-        const user: User = JSON.parse(localStorage.getItem("user"));
+        const user: IUser = JSON.parse(localStorage.getItem("user"));
         await Http.Request("POST", "/api/users/comment", null, {
             user_id: user.id,
             diary_id,
@@ -48,4 +48,18 @@ export const DiaryApi = {
             };
         }
     },
+    getDiaryByUserId: async(userId, isPrivate=false): Promise<IDiaryList> => {
+        try {
+            const { data } = await Http.Request(
+                "GET",
+                `/api/user/${userId}/diary${isPrivate ? '?private': ''}`
+            );
+            return data;
+        } catch (error) {
+            return {
+                count: 0,
+                rows: [],
+            };
+        }
+    }
 };

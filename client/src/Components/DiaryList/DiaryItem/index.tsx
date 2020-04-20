@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { IDiary, User } from "@Interfaces";
+import { IDiary, IUser, IComment } from "@Interfaces";
 import { Icon, Input, Button } from "antd";
 import { DiaryApi } from "@/API/Diary";
 import Router from "next/router";
 
 const { TextArea } = Input;
 
-const Avatar = () => {
-    return <div className="avatar"></div>;
-};
 
-export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ diary }) => {
-    const { id, user, created_at, content, commentSize } = diary;
+export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ diary, showAvatar }) => {
+    const { id, user_id, user, created_at, content, commentSize } = diary;
     const [commentNum, setCommentNum] = useState(commentSize);
     const [hasLogined, setHasLogined] = useState(true);
     const [showComments, setShowComments] = useState(false);
     const [commentValue, setCommentValue] = useState("");
-    const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState<IComment[]>([]);
 
     useEffect(() => {
         if (typeof localStorage !== "undefined") {
-            const curUser: User =
+            const curUser: IUser =
                 JSON.parse(localStorage.getItem("user")) || {};
             if (!curUser.id) {
                 setHasLogined(false);
             }
         }
     }, []);
+
+    useEffect(() => {
+        getComments();
+    }, [showComments]);
 
     const getComments = () => {
         if (showComments) {
@@ -37,9 +38,14 @@ export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ di
         }
     }
 
-    useEffect(() => {
-        getComments();
-    }, [showComments]);
+    const goToUser = (id) => {
+        Router.push(`/user/${id}`)
+    }
+
+    const avatar = (user: IComment['user'] | IUser) => {
+        const { id } = user;
+        return <div className="avatar" onClick={() =>goToUser(id)}></div>;
+    };
 
     const addComment = async () => {
         await DiaryApi.addComment(id, commentValue);
@@ -55,10 +61,10 @@ export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ di
                     <div className="comment-list">
                         {comments.map(({ content, created_at, user, id }) => (
                             <div className="comment-item" key={id}>
-                                <Avatar />
+                                {avatar(user)}
                                 <div className="right">
                                     <div className="info">
-                                        <a className="username">
+                                        <a className="username" onClick={() => goToUser(user.id)}>
                                             {user.nickname}
                                         </a>
                                         <span className="time">
@@ -94,10 +100,10 @@ export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ di
     return (
         <div className="diary-item">
             <div className="diary">
-                <Avatar />
+                {showAvatar && avatar(user)}
                 <div className="right">
                     <div className="info">
-                        <a className="username">{user.nickname}</a>
+                    {showAvatar && <a className="username" onClick={() => goToUser(user_id)}>{user.nickname}</a>}
                         <span className="time">{getDate(created_at)}</span>
                     </div>
                     <div

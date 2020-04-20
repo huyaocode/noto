@@ -16,9 +16,9 @@ const RegisterForm = ({ form }: { form: any }) => {
         e.preventDefault();
         form.validateFields(async (err, values) => {
             if (!err) {
-                const {msg} = await UserApi.Register(values)
+                const {msg} = await UserApi.register(values)
                 if(msg == 'success') {
-                    const {data} = await UserApi.Login(values);
+                    const {data} = await UserApi.login(values);
                     localStorage.setItem('user',JSON.stringify(data))
                     Router.push('/')
                 } else if(msg ==='username already exists') {

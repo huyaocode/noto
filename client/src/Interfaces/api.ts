@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
     id: string;
     username: string;
     nickname: string;
@@ -15,7 +15,7 @@ export interface IDiary {
     commentSize: number;
     created_at: Date;
     user_id: string;
-    user: User;
+    user: IUser;
 }
 
 export interface IDiaryList {
