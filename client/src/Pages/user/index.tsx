@@ -10,6 +10,8 @@ import {
 import "./styles.scss";
 import { PageLayout, DiaryList } from "@/Components";
 import { DiaryApi } from "@/API/Diary";
+import { Avatar } from "antd";
+import TextArea from "antd/lib/input/TextArea";
 
 const User: NextPage<
     WithTranslation & { user: IUser; diaryList: IDiaryList },
@@ -20,7 +22,7 @@ const User: NextPage<
     useEffect(() => {
         if (typeof document !== "undefined") {
             DiaryApi.getDiaryByUserId(user.id, true).then(res => {
-                if(!res) {
+                if (!res) {
                     return;
                 }
                 diaryList = {
@@ -36,8 +38,19 @@ const User: NextPage<
 
     return (
         <PageLayout t={t} i18n={i18n}>
-            <div className="user-page">
+            <div className="user-page-wrapper">
                 <DiaryList diaryList={diaries} showAvatar={false} />
+                
+                <div className="user-info">
+                    <Avatar
+                        shape="square"
+                        size={100}
+                        icon="user"
+                        src={user.avatar}
+                    />
+                    <div className="nickname">{user.nickname}</div>
+                    <div className="profile">{user.profile}</div>
+                </div>
             </div>
         </PageLayout>
     );

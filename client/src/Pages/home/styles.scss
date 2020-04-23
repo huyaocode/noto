@@ -1,0 +1,14 @@
+.home-wrapper{
+  display: flex;
+  .diary-list {
+    width: 670px;
+  }
+  .aside {
+    position: sticky;
+    top: 70px;
+    height: 300px;
+    width: 200px;
+    margin-left: 30px;
+    text-align: center;
+  }
+}

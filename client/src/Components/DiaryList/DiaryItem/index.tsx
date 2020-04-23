@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { IDiary, IUser, IComment } from "@Interfaces";
-import { Icon, Input, Button } from "antd";
+import { Icon, Input, Button, Avatar } from "antd";
 import { DiaryApi } from "@/API/Diary";
 import Router from "next/router";
 
 const { TextArea } = Input;
 
-
-export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ diary, showAvatar }) => {
+export const DiaryItem: React.FC<{ diary: IDiary; showAvatar?: boolean }> = ({
+    diary,
+    showAvatar,
+}) => {
     const { id, user_id, user, created_at, content, commentSize } = diary;
     const [commentNum, setCommentNum] = useState(commentSize);
     const [hasLogined, setHasLogined] = useState(true);
     const [showComments, setShowComments] = useState(false);
     const [commentValue, setCommentValue] = useState("");
     const [comments, setComments] = useState<IComment[]>([]);
+    const [curUser, setCurUser] = useState({});
+
 
     useEffect(() => {
         if (typeof localStorage !== "undefined") {
-            const curUser: IUser =
-                JSON.parse(localStorage.getItem("user")) || {};
-            if (!curUser.id) {
+            const user = JSON.parse(localStorage.getItem("user")) || {}
+            setCurUser(user);
+            if (!user.id) {
                 setHasLogined(false);
             }
         }
@@ -36,15 +40,19 @@ export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ di
                 setComments(comments.rows)
             );
         }
-    }
+    };
 
-    const goToUser = (id) => {
-        Router.push(`/user/${id}`)
-    }
+    const goToUser = id => {
+        Router.push(`/user/${id}`);
+    };
 
-    const avatar = (user: IComment['user'] | IUser) => {
-        const { id } = user;
-        return <div className="avatar" onClick={() =>goToUser(id)}></div>;
+    const avatar = (user: any, size=64) => {
+        const { id, avatar } = user;
+        return (
+            <div className="avatar" onClick={() => goToUser(id)}>
+                <Avatar shape="square" size={size} icon="user" src={avatar} />
+            </div>
+        );
     };
 
     const addComment = async () => {
@@ -61,10 +69,13 @@ export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ di
                     <div className="comment-list">
                         {comments.map(({ content, created_at, user, id }) => (
                             <div className="comment-item" key={id}>
-                                {avatar(user)}
+                                {avatar(user, 40)}
                                 <div className="right">
                                     <div className="info">
-                                        <a className="username" onClick={() => goToUser(user.id)}>
+                                        <a
+                                            className="username"
+                                            onClick={() => goToUser(user.id)}
+                                        >
                                             {user.nickname}
                                         </a>
                                         <span className="time">
@@ -80,6 +91,7 @@ export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ di
                     </div>
                     {hasLogined && (
                         <div className="comment">
+                            {avatar(curUser, 40)}
                             <TextArea
                                 value={commentValue}
                                 onChange={e => setCommentValue(e.target.value)}
@@ -103,7 +115,14 @@ export const DiaryItem: React.FC<{ diary: IDiary, showAvatar?: boolean}> = ({ di
                 {showAvatar && avatar(user)}
                 <div className="right">
                     <div className="info">
-                    {showAvatar && <a className="username" onClick={() => goToUser(user_id)}>{user.nickname}</a>}
+                        {showAvatar && (
+                            <a
+                                className="username"
+                                onClick={() => goToUser(user_id)}
+                            >
+                                {user.nickname}
+                            </a>
+                        )}
                         <span className="time">{getDate(created_at)}</span>
                     </div>
                     <div

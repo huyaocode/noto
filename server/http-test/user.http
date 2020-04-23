@@ -20,3 +20,14 @@ content-type: application/json
   "username": "hy",
   "password": "123"
 }
+
+
+### update
+PUT {{origin}}/api/users/1
+content-type: application/json
+
+{
+  "nickname": "胡耀",
+  "profile": "哈哈哈哈，我拥有简介了",
+  "avatar": "666"
+}

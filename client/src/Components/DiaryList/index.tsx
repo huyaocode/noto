@@ -8,10 +8,10 @@ export const DiaryList: React.FC<{ diaryList: IDiary[],  showAvatar?: boolean }>
     showAvatar = true
 }) => {
     return (
-        <>
+        <div className="diary-list">
             {diaryList.map(
                 diary => <DiaryItem diary={diary} key={diary.id} showAvatar={showAvatar} />
             )}
-        </>
+        </div>
     );
 };

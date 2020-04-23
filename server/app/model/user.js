@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-  const { INTEGER, STRING, DATE } = app.Sequelize;
+  const { INTEGER, STRING, DATE, TEXT } = app.Sequelize;
 
   const User = app.model.define(
     'user',
@@ -15,8 +15,8 @@ module.exports = app => {
       password: STRING,
       nickname: STRING,
       created_at: DATE,
-      avatar: STRING,
-      profile: STRING,
+      avatar: TEXT,
+      profile: TEXT,
       authority: INTEGER
     },
     {

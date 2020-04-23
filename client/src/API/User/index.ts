@@ -51,4 +51,12 @@ export const UserApi = {
             return {};
         }
     },
+    updateUser: async (userId: string, user: any) => {
+        try {
+            const res = await Http.Request<{data: IUser}>("PUT", `/api/users/${userId}`, null, user);
+            return res.data;
+        } catch (error) {
+            return {};
+        }
+    },
 };

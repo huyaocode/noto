@@ -76,11 +76,19 @@ class UserService extends Service {
           msg: 'user not found',
         });
       }
-      const md5Passwd = md5(user.password);
-      user = Object.assign(user, {
-        password: md5Passwd,
-      });
+      user = {
+        id: userDB.id,
+        username: userDB.username,
+        password: userDB.password,
+        created_at: userDB.created_at,
+        authority: userDB.authority,
+        
+        nickname: user.nickname,
+        avatar: user.avatar,
+        profile:user.profile
+      }
       const res = await userDB.update(user);
+      res.password = ''
       ctx.status = 200;
       return Object.assign(SUCCESS, {
         data: res,
