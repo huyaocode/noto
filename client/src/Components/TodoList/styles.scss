@@ -7,13 +7,14 @@
       display: flex;
       align-items: center;
       border-radius: 5px;
+      padding-left: 10px;
       .cercle {
         width: 20px;
         height: 20px;
         border-radius: 50%;
         border: 2px solid #bfbfbf;
         cursor: pointer;
-        margin: 0 10px 0 10px;
+        margin: 0 10px 0 0;
         &:hover {
           border: 2px solid #1890ff;
         }

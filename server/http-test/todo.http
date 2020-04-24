@@ -1,6 +1,6 @@
 @origin = http://127.0.0.1:8000
 
-### 获取某日记评论
+### 获取
 GET {{origin}}/api/todos
 Cookie: 'user_id=1'
 
@@ -10,11 +10,11 @@ content-type: application/json
 Cookie: 'user_id=1'
 
 {
-  "content": "内容asdfasdf 士大夫",
+  "content": "342342大的"
 }
 
 ### 删除
-DELETE {{origin}}/api/todo/3
+DELETE {{origin}}/api/todo/6
 Cookie: 'user_id=1'
 
 ### 更新
@@ -23,5 +23,5 @@ content-type: application/json
 Cookie: 'user_id=1'
 
 {
-  "content": "内容asdfasdf 士大夫"
+  "content": "阿斯顿发送到发士大夫"
 }

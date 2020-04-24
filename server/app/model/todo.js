@@ -16,8 +16,7 @@ module.exports = app => {
     },
     content: STRING,
     type: INTEGER,
-    start_at: DATE,
-    done_at: DATE
+    start_at: DATE
   },{
     'timestamps': false,
   });

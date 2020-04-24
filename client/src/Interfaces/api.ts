@@ -40,3 +40,18 @@ export interface ICommentList {
     count: number;
     rows: IComment[];
 }
+
+export enum TODOTYPE {
+    complete = 0,
+    common = 1,
+    tomorrow = 2,
+    collection = 3
+}
+
+export interface ITodo {
+    id: string;
+    content: string;
+    type: TODOTYPE,
+    start_at?: number;
+    done_at?: Date;
+}

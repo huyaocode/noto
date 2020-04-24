@@ -21,7 +21,11 @@ class TodoController extends Controller {
     const {
       ctx,
     } = this;
-    ctx.body = await ctx.service.todo.get();
+    
+    const type = +(ctx.queries.type && ctx.queries.type[0])
+    ctx.body = await ctx.service.todo.get({
+      type
+    });
   }
 
   async update() {

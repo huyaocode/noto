@@ -10,7 +10,7 @@ class TodoService extends Service {
     const { ctx } = this;
     const user_id = getUIdFromCookie(ctx.request.header.cookie);
 
-    const { content, start_at, type = 0 } = ctx.request.body;
+    const { content, start_at, type = 1 } = ctx.request.body;
 
     try {
       if (!content || !user_id) {
@@ -53,9 +53,10 @@ class TodoService extends Service {
     }
   }
 
-  async get() {
+  async get({type}) {
     const { ctx } = this;
     try {
+      
       const user_id = getUIdFromCookie(ctx.request.header.cookie);
       if (!user_id) {
         ctx.status = 403;
@@ -66,6 +67,7 @@ class TodoService extends Service {
       const options = {
         where: {
           user_id,
+          type,
         },
       };
       const res = await this.ctx.model.Todo.findAndCountAll(options);
@@ -90,27 +92,25 @@ class TodoService extends Service {
         return Object.assign(ERROR);
       }
       const todoDB = await ctx.model.Todo.findById(id);
-      if(!todoDB) {
+      if (!todoDB) {
         ctx.status = 404;
-        return Object.assign(ERROR,{
-          msg: 'todo not found'
+        return Object.assign(ERROR, {
+          msg: 'todo not found',
         });
       }
 
-      const { done_at, type, content } = ctx.request.body;
+      const { type, content } = ctx.request.body;
+
       const todo = {
         id: todoDB.id,
         start_at: todoDB.start_at,
         content: content || todoDB.content,
-        done_at: done_at || todoDB.done_at,
-        type: type || todoDB.type,
+        type: type !== undefined ? type : todoDB.type,
       };
 
-      const res = await todoDB.update(todo);
+      await todoDB.update(todo);
 
-      return Object.assign(SUCCESS, {
-        data: res
-      });
+      return Object.assign(SUCCESS);
     } catch (error) {
       ctx.status = 500;
       return Object.assign(ERROR);
