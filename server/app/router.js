@@ -7,4 +7,5 @@ module.exports = app => {
   require('./router/diary')(app);
   require('./router/user')(app);
   require('./router/comment')(app);
+  require('./router/todo')(app);
 };

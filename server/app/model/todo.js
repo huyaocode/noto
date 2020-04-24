@@ -17,10 +17,12 @@ module.exports = app => {
     content: STRING,
     type: INTEGER,
     start_at: DATE,
-    done_at: DATE,
-    order: FLOAT
+    done_at: DATE
   },{
     'timestamps': false,
   });
+  Todo.associate = function() {
+    app.model.Todo.belongsTo(app.model.User);
+  };
   return Todo;
 };

@@ -1,0 +1,27 @@
+@origin = http://127.0.0.1:8000
+
+### 获取某日记评论
+GET {{origin}}/api/todos
+Cookie: 'user_id=1'
+
+### 创建TODO
+POST {{origin}}/api/todo
+content-type: application/json
+Cookie: 'user_id=1'
+
+{
+  "content": "内容asdfasdf 士大夫",
+}
+
+### 删除
+DELETE {{origin}}/api/todo/3
+Cookie: 'user_id=1'
+
+### 更新
+PUT {{origin}}/api/todo/4
+content-type: application/json
+Cookie: 'user_id=1'
+
+{
+  "content": "内容asdfasdf 士大夫"
+}
