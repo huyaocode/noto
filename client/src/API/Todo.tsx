@@ -21,8 +21,7 @@ export const TodoApi = {
         return res;
     },
     deleteTodo: async id => {
-        const res = await Http.Request<{data: GetTodoRes}>("DELETE", `/api/todo/${id}`);
-        return res;
+        return await Http.Request("DELETE", `/api/todo/${id}`);
     },
     getTodo: async (type?: TODOTYPE): Promise<ITodo[]> => {
         const res = await Http.Request<{data: GetTodoRes}>("GET", "/api/todos", {

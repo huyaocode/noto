@@ -23,10 +23,41 @@ export const DiaryApi = {
         await Http.Request("POST", "/api/diary", null, {
             user_id: user.id,
             content,
-            private: privated,
+            privated,
         });
     },
-    addComment: async (diary_id,  content) => {
+    getDiaryByUserId: async (
+        userId,
+        isPrivate = false
+    ): Promise<IDiaryList> => {
+        try {
+            const { data } = await Http.Request(
+                "GET",
+                `/api/user/${userId}/diary${isPrivate ? "?private" : ""}`
+            );
+            return data;
+        } catch (error) {
+            return {
+                count: 0,
+                rows: [],
+            };
+        }
+    },
+    setDiaryPrivate: async (diary_id, isPrivate) => {
+        const { data } = await Http.Request(
+            "PUT",
+            `/api/diary/${diary_id}`,
+            null,
+            {
+                privated: isPrivate,
+            }
+        );
+        return data;
+    },
+    deleteDiary: async diary_id => {
+        return await Http.Request("DELETE", `/api/diary/${diary_id}`);
+    },
+    addComment: async (diary_id, content) => {
         const user: IUser = JSON.parse(localStorage.getItem("user"));
         await Http.Request("POST", "/api/users/comment", null, {
             user_id: user.id,
@@ -48,18 +79,4 @@ export const DiaryApi = {
             };
         }
     },
-    getDiaryByUserId: async(userId, isPrivate=false): Promise<IDiaryList> => {
-        try {
-            const { data } = await Http.Request(
-                "GET",
-                `/api/user/${userId}/diary${isPrivate ? '?private': ''}`
-            );
-            return data;
-        } catch (error) {
-            return {
-                count: 0,
-                rows: [],
-            };
-        }
-    }
 };

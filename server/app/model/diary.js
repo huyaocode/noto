@@ -14,7 +14,7 @@ module.exports = app => {
       primaryKey: true,
       autoIncrement: true,
     },
-    private: BOOLEAN,
+    privated: BOOLEAN,
     content: {
       type: TEXT,
     },

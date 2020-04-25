@@ -16,6 +16,7 @@ export interface IDiary {
     created_at: Date;
     user_id: string;
     user: IUser;
+    privated?: boolean;
 }
 
 export interface IDiaryList {
@@ -54,4 +55,10 @@ export interface ITodo {
     type: TODOTYPE,
     start_at?: number;
     done_at?: Date;
+}
+
+export interface II18n {
+    id: string;
+    zh?: string;
+    en?: string;
 }

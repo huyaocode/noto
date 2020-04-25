@@ -23,11 +23,9 @@ class DiaryController extends Controller {
     const {
       ctx,
     } = this;
-    const id = ctx.params.id;
-    const user_id = +ctx.params.user_id;
+    const id = +ctx.params.id;
     const res = await ctx.service.diary.del({
       id,
-      user_id,
     });
     ctx.status = 200;
     ctx.body = res;
@@ -37,12 +35,10 @@ class DiaryController extends Controller {
     const {
       ctx,
     } = this;
-    const id = ctx.params.id;
-    const user_id = +ctx.params.user_id;
+    const id = +ctx.params.id;
     const body = ctx.request.body;
     ctx.body = await ctx.service.diary.update({
       id,
-      user_id,
       updates: body,
     });
   }

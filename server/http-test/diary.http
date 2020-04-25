@@ -14,6 +14,7 @@ GET {{origin}}/api/user/1/diary?private
 ### create
 POST {{origin}}/api/diary
 content-type: application/json
+Cookie: 'user_id=1'
 
 {
     "title": "diary-2",
@@ -22,14 +23,14 @@ content-type: application/json
 }
 
 ### update
-PUT {{origin}}/api/users/3/diary/3
+PUT {{origin}}/api/diary/3
 content-type: application/json
+Cookie: 'user_id=1'
 
 {
-    "title": "hello world",
-    "content": "更新了!!!",
-    "user_id": 3
+    "privated": true
 }
 
 ### delete
-DELETE {{origin}}/api/users/4/diary/4
+DELETE {{origin}}/api/diary/4
+Cookie: 'user_id=1'

@@ -31,9 +31,12 @@ const Setting = ({ t, i18n }) => {
 
     const menu = (
         <Menu>
-            <Menu.Item  onClick={() => Router.push(`/user/${user.id}`)}>我的日记</Menu.Item>
+            <Menu.Item onClick={() => Router.push(`/user/${user.id}`)}>
+                我的日记
+            </Menu.Item>
             <Menu.Item onClick={() => Router.push(`/me`)}>我的信息</Menu.Item>
             <Menu.Item onClick={() => logout()}>退出登录</Menu.Item>
+            {user.authority && <Menu.Item onClick={() => Router.push('/i18n')}>文案配置</Menu.Item>}
         </Menu>
     );
     return (
@@ -42,10 +45,12 @@ const Setting = ({ t, i18n }) => {
                 {nextLanguageMap[i18n.language]}
             </div>
             {user.id ? (
-                <Dropdown overlay={menu} ><a className="login">{user.nickname}</a></Dropdown>
+                <Dropdown overlay={menu}>
+                    <a className="login">{user.nickname}</a>
+                </Dropdown>
             ) : (
                 <div className="login" onClick={() => Router.push("/login")}>
-                    {t('login')}
+                    {t("login")}
                 </div>
             )}
         </div>

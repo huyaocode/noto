@@ -1,0 +1,36 @@
+.i18n-wrapper {
+  th {
+    width:  300px;
+    &:first-child {
+      width: 200px;
+    }
+  }
+  .add{
+    display: flex;
+    align-items: center;
+    div{
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      input {
+        margin-left: 10px;
+      }
+    }
+    .key-input {
+      width: 170px;
+    }
+    .i18n-v{
+      width: 290px;
+    }
+    .ant-btn {
+      margin-left: 20px;
+    }
+  }
+  .key {
+    width:100px;
+  }
+  .i18-v {
+    width: 250px;
+  }
+}
+

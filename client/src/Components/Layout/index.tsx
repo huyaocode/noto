@@ -5,13 +5,13 @@ import Logo from "./Logo";
 import "./styles.scss";
 
 import { EditIcon, TodolistIcon } from "@Static/icons";
-import Router, {useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 const { Header } = Layout;
 
 export const PageLayout = ({ t, i18n, children }) => {
     const router = useRouter();
-    
+
     const editDiary = () => {
         Router.push("/edit");
     };
@@ -23,7 +23,7 @@ export const PageLayout = ({ t, i18n, children }) => {
         <Layout className="layout">
             <Header className="header" style={{ backgroundColor: "#fff" }}>
                 <div className="content">
-                    <Logo t ={t}/>
+                    <Logo t={t} />
                     <Menu mode="horizontal" selectedKeys={[router.pathname]}>
                         <Menu.Item key="/edit" onClick={() => editDiary()}>
                             <EditIcon />
@@ -34,7 +34,7 @@ export const PageLayout = ({ t, i18n, children }) => {
                             记待办
                         </Menu.Item>
                     </Menu>
-                    <Setting t={t} i18n={i18n}/>
+                    <Setting t={t} i18n={i18n} />
                 </div>
             </Header>
             <main className="container">{children}</main>

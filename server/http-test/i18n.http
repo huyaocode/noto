@@ -1,0 +1,30 @@
+@origin = http://127.0.0.1:8000
+
+### 获取
+GET {{origin}}/api/i18ns
+Cookie: 'user_id=1'
+
+### 创建
+POST {{origin}}/api/i18n
+content-type: application/json
+Cookie: 'user_id=1'
+
+{
+  "id": "add-diary",
+  "zh": "写日记",
+  "en": "Write Diary"
+}
+
+### 删除
+DELETE {{origin}}/api/i18n/title
+Cookie: 'user_id=1'
+
+### 更新
+PUT {{origin}}/api/i18n/title
+content-type: application/json
+Cookie: 'user_id=1'
+
+{
+  "zh": "日记22",
+  "en": "Diary22"
+}

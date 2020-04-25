@@ -2,18 +2,16 @@
 
 module.exports = app => {
   const {
-    INTEGER,
     STRING,
   } = app.Sequelize;
 
   const I18n = app.model.define('i18n', {
     id: {
-      type: INTEGER,
+      type: STRING,
       primaryKey: true,
-      autoIncrement: true,
     },
-    key: STRING,
-    value: STRING
+    zh: STRING,
+    en: STRING
   },{
     'timestamps': false,
   });
