@@ -10,15 +10,13 @@ const Home: NextPage<
     WithTranslation & { diaryList: IDiary[] },
     NamespacesRequiredProps
 > = ({ t, i18n, diaryList }) => {
-
     // TODO 这里 console 2次
     // console.log('diaryList', diaryList)
     return (
         <PageLayout t={t} i18n={i18n}>
             <div className="home-wrapper">
-                <DiaryList diaryList={diaryList} />
-                <div className="aside">
-                </div>
+                <DiaryList diaryList={diaryList} t={t} />
+                <div className="aside"></div>
             </div>
         </PageLayout>
     );

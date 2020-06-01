@@ -19,8 +19,8 @@ const User: NextPage<
     const [diaries, setDiaries] = useState<IDiary[]>(diaryList.rows);
 
     useEffect(() => {
-        const user_id = JSON.parse(localStorage.getItem('user')).id;
-        if(user_id !== user.id) {
+        const user_id = JSON.parse(localStorage.getItem("user")).id;
+        if (user_id !== user.id) {
             return;
         }
         DiaryApi.getDiaryByUserId(user.id, true).then(res => {
@@ -40,8 +40,8 @@ const User: NextPage<
     return (
         <PageLayout t={t} i18n={i18n}>
             <div className="user-page-wrapper">
-                <DiaryList diaryList={diaries} showAvatar={false} />
-                
+                <DiaryList diaryList={diaries} showAvatar={false} t={t} />
+
                 <div className="user-info">
                     <Avatar
                         shape="square"

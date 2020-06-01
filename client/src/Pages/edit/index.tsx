@@ -19,10 +19,7 @@ const modules = {
     toolbar: [
         [{ header: "1" }, { header: "2" }],
         ["bold", "italic", "underline", "strike", "blockquote"],
-        [
-            { list: "ordered" },
-            { list: "bullet" },
-        ],
+        [{ list: "ordered" }, { list: "bullet" }],
         ["link", "image"],
         ["clean"],
     ],
@@ -58,7 +55,7 @@ const Edit: NextPage<WithTranslation, NamespacesRequiredProps> = ({
 
     useEffect(() => {
         if (typeof localStorage !== "undefined") {
-            setContent(localStorage.getItem("diaryDraft"));
+            setContent(localStorage.getItem("diaryDraft") || "");
         }
     }, []);
 
@@ -78,8 +75,8 @@ const Edit: NextPage<WithTranslation, NamespacesRequiredProps> = ({
 
     const saveDiary = async () => {
         try {
-            if(!content) {
-                return
+            if (!content) {
+                return;
             }
             await DiaryApi.createDiary(content, privated);
             localStorage.setItem("diaryDraft", "");
@@ -109,7 +106,7 @@ const Edit: NextPage<WithTranslation, NamespacesRequiredProps> = ({
                     />
                 </div>
                 <Button type="primary" onClick={() => saveDiary()}>
-                    保存
+                    {t("save")}
                 </Button>
             </div>
         </PageLayout>

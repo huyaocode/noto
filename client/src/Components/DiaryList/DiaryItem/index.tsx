@@ -7,10 +7,11 @@ import Router from "next/router";
 
 const { TextArea } = Input;
 
-export const DiaryItem: React.FC<{ diary: IDiary; showAvatar?: boolean }> = ({
-    diary,
-    showAvatar,
-}) => {
+export const DiaryItem: React.FC<{
+    diary: IDiary;
+    showAvatar?: boolean;
+    t;
+}> = ({ diary, showAvatar, t }) => {
     const {
         id,
         user_id,
@@ -98,7 +99,7 @@ export const DiaryItem: React.FC<{ diary: IDiary; showAvatar?: boolean }> = ({
                                             {user.nickname}
                                         </a>
                                         <span className="time">
-                                            {getDate(created_at)}
+                                            {getDate(created_at, t)}
                                         </span>
                                     </div>
                                     <div className="comment-content">
@@ -119,7 +120,7 @@ export const DiaryItem: React.FC<{ diary: IDiary; showAvatar?: boolean }> = ({
                                 className="btn"
                                 onClick={() => addComment()}
                             >
-                                评论
+                                {t("comment")}
                             </Button>
                         </div>
                     )}
@@ -130,7 +131,10 @@ export const DiaryItem: React.FC<{ diary: IDiary; showAvatar?: boolean }> = ({
 
     const renderDeleteIcon = () => {
         return (
-            !showAvatar && curUser.id === user_id && <Icon type="delete" onClick={() => deleteDiary()} />
+            !showAvatar &&
+            curUser.id === user_id && (
+                <Icon type="delete" onClick={() => deleteDiary()} />
+            )
         );
     };
 
@@ -176,7 +180,9 @@ export const DiaryItem: React.FC<{ diary: IDiary; showAvatar?: boolean }> = ({
                                     {user.nickname}
                                 </a>
                             )}
-                            <span className="time">{getDate(created_at)}</span>
+                            <span className="time">
+                                {getDate(created_at, t)}
+                            </span>
                             {renderDeleteIcon()}
                             {renderPrivateIcon()}
                         </div>
@@ -197,7 +203,7 @@ export const DiaryItem: React.FC<{ diary: IDiary; showAvatar?: boolean }> = ({
                                 }}
                             >
                                 <Icon type="message" />
-                                {commentNum ? commentNum : "评论"}
+                                {commentNum ? commentNum : t("comment")}
                             </div>
                         </div>
                         {renderComment()}
@@ -208,22 +214,30 @@ export const DiaryItem: React.FC<{ diary: IDiary; showAvatar?: boolean }> = ({
     );
 };
 
-function getDate(timeStr) {
+function getDate(timeStr, t) {
     const dt = new Date(timeStr);
     var year = dt.getFullYear();
     var month = dt.getMonth() + 1;
     var day = dt.getDate();
     var hour = dt.getHours();
     var minut = dt.getMinutes();
-    var arr = ["日", "一", "二", "三", "四", "五", "六"];
+    var arr = [
+        t("w-0"),
+        t("w-1"),
+        t("w-2"),
+        t("w-3"),
+        t("w-4"),
+        t("w-5"),
+        t("w-6"),
+    ];
     var week = dt.getDay();
 
     const curYear = new Date().getFullYear();
-    const yearStr = year === curYear ? "" : `${year}年`;
+    const yearStr = year === curYear ? "" : `${year}-`;
 
-    return `${yearStr}${month < 10 ? "0" + month : month}月${
+    return `${yearStr}${month < 10 ? "0" + month : month}-${
         day < 10 ? "0" + day : day
-    }日 ${hour < 10 ? "0" + hour : hour}:${
-        minut < 10 ? "0" + minut : minut
-    }   周${arr[week]}`;
+    } ${hour < 10 ? "0" + hour : hour}:${minut < 10 ? "0" + minut : minut}   ${
+        arr[week]
+    }`;
 }
