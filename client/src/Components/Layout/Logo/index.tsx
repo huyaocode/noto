@@ -9,7 +9,7 @@ const Logo = ({ t }) => {
 
     return (
         <div className="logo">
-            <h1 onClick={() => logoClicked()}>{t('logo')}</h1>
+            <h1 onClick={() => logoClicked()}>{t("title")}</h1>
         </div>
     );
 };

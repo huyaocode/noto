@@ -1,5 +1,1 @@
-{
-    "Hello": "你好",
-    "logo": "NOTO日记",
-    "login": "登录"
-}
+{"add-diary":"写日记","add-todo":"记待办","i18n-set":"文案配置","logout":"退出登录","my-diary":"我的日记","my-info":"我的信息","title":"NOTO 日记"}

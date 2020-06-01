@@ -34,9 +34,6 @@ module.exports = app => {
     app.model.User.hasMany(app.model.Todo, {
       as: 'todos'
     });
-    app.model.User.hasMany(app.model.Calendar, {
-      as: 'calendar'
-    });
   };
 
   return User;

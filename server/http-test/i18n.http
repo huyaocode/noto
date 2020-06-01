@@ -2,7 +2,6 @@
 
 ### 获取
 GET {{origin}}/api/i18ns
-Cookie: 'user_id=1'
 
 ### 创建
 POST {{origin}}/api/i18n

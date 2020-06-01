@@ -27,11 +27,11 @@ export const PageLayout = ({ t, i18n, children }) => {
                     <Menu mode="horizontal" selectedKeys={[router.pathname]}>
                         <Menu.Item key="/edit" onClick={() => editDiary()}>
                             <EditIcon />
-                            写日记
+                            {t('add-diary')}
                         </Menu.Item>
                         <Menu.Item key="/todo" onClick={() => editTodo()}>
                             <TodolistIcon />
-                            记待办
+                            {t('add-todo')}
                         </Menu.Item>
                     </Menu>
                     <Setting t={t} i18n={i18n} />

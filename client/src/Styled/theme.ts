@@ -2,10 +2,10 @@
 import { DefaultTheme } from "styled-components";
 // #endregion Global Imports
 
-const theme: DefaultTheme = {
+const themeeeee: DefaultTheme = {
     colors: {
         primary: "#2c3e50",
     },
 };
 
-export { theme };
+export { themeeeee };

@@ -11,7 +11,6 @@ import "./styles.scss";
 import { PageLayout, DiaryList } from "@/Components";
 import { DiaryApi } from "@/API/Diary";
 import { Avatar } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 
 const User: NextPage<
     WithTranslation & { user: IUser; diaryList: IDiaryList },
@@ -20,20 +19,22 @@ const User: NextPage<
     const [diaries, setDiaries] = useState<IDiary[]>(diaryList.rows);
 
     useEffect(() => {
-        if (typeof document !== "undefined") {
-            DiaryApi.getDiaryByUserId(user.id, true).then(res => {
-                if (!res) {
-                    return;
-                }
-                diaryList = {
-                    count: diaryList.count + res.count,
-                    rows: [...diaryList.rows, ...res.rows].sort((a, b) => {
-                        return a.created_at < b.created_at ? 1 : -1;
-                    }),
-                };
-                setDiaries(diaryList.rows);
-            });
+        const user_id = JSON.parse(localStorage.getItem('user')).id;
+        if(user_id !== user.id) {
+            return;
         }
+        DiaryApi.getDiaryByUserId(user.id, true).then(res => {
+            if (!res) {
+                return;
+            }
+            diaryList = {
+                count: diaryList.count + res.count,
+                rows: [...diaryList.rows, ...res.rows].sort((a, b) => {
+                    return a.created_at < b.created_at ? 1 : -1;
+                }),
+            };
+            setDiaries(diaryList.rows);
+        });
     }, []);
 
     return (
