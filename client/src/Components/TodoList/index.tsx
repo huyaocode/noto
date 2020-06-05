@@ -102,4 +102,4 @@ const Component = ({ todoType, disabled = false }) => {
     );
 };
 
-export const TodoList = memo(Component);
+export const TodoList = Component;

@@ -1,1 +1,23 @@
-{"add-diary":"写日记","add-todo":"记待办","comment":"评论","i18n-set":"文案配置","logout":"退出登录","my-diary":"我的日记","my-info":"我的信息","save":"保存","title":"NOTO 日记","w-0":"周日","w-1":"周一","w-2":"周二","w-3":"周三","w-4":"周四","w-5":"周五","w-6":"周六"}
+{
+    "add-diary": "写日记",
+    "add-todo": "记待办",
+    "comment": "评论",
+    "i18n-set": "文案配置",
+    "login": "登录",
+    "logout": "退出登录",
+    "my-diary": "我的日记",
+    "my-info": "我的信息",
+    "save": "保存",
+    "title": "NOTO 日记",
+    "todo-collection": "收集箱",
+    "todo-done": "已完成",
+    "todo-today": "今日待办",
+    "todo-tomorrow": "明天待办",
+    "w-0": "周日",
+    "w-1": "周一",
+    "w-2": "周二",
+    "w-3": "周三",
+    "w-4": "周四",
+    "w-5": "周五",
+    "w-6": "周六"
+}

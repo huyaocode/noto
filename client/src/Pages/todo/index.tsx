@@ -27,16 +27,16 @@ const Todo: NextPage<WithTranslation, NamespacesRequiredProps> = ({
     return (
         <PageLayout t={t} i18n={i18n}>
             <Tabs defaultActiveKey="1" tabPosition="left">
-                <TabPane tab="今日待办" key="1">
+                <TabPane tab={t("todo-today")} key="1">
                     <TodoList todoType={1} />
                 </TabPane>
-                <TabPane tab="明日待办" key="2">
+                <TabPane tab={t("todo-tomorrow")} key="2">
                     <TodoList todoType={2} />
                 </TabPane>
-                <TabPane tab="收集箱" key="3">
+                <TabPane tab={t("todo-collection")} key="3">
                     <TodoList todoType={3} />
                 </TabPane>
-                <TabPane tab="已完成" key="4">
+                <TabPane tab={t("todo-done")} key="4">
                     <TodoList todoType={0} disabled />
                 </TabPane>
             </Tabs>

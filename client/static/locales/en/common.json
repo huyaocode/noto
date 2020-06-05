@@ -1,1 +1,23 @@
-{"add-diary":"Write Diary","add-todo":"Add Todo","comment":"Comment","i18n-set":"I18n Setting","logout":"Logout","my-diary":"My Diary","my-info":"My Info","save":"Save","title":"NOTO Diary ","w-0":"Sun","w-1":"Mon","w-2":"Tue","w-3":"Wed","w-4":"Thu","w-5":"Fri","w-6":"Sat"}
+{
+    "add-diary": "Write Diary",
+    "add-todo": "Add Todo",
+    "comment": "Comment",
+    "i18n-set": "I18n Setting",
+    "login": "Login",
+    "logout": "Logout",
+    "my-diary": "My Diary",
+    "my-info": "My Info",
+    "save": "Save",
+    "title": "NOTO Diary ",
+    "todo-collection": "Collection",
+    "todo-done": "Done",
+    "todo-today": "Today",
+    "todo-tomorrow": "Tomorrow",
+    "w-0": "Sun",
+    "w-1": "Mon",
+    "w-2": "Tue",
+    "w-3": "Wed",
+    "w-4": "Thu",
+    "w-5": "Fri",
+    "w-6": "Sat"
+}

@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Menu, Dropdown } from "antd";
 import "./styles.scss";
 import Router from "next/router";
@@ -63,4 +63,4 @@ const Setting = ({ t, i18n }) => {
     );
 };
 
-export default memo(Setting);
+export default Setting;

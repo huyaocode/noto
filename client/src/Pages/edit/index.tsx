@@ -65,6 +65,16 @@ const Edit: NextPage<WithTranslation, NamespacesRequiredProps> = ({
         }
     }, [content]);
 
+    useEffect(() => {
+        if (typeof localStorage !== "undefined") {
+            const user = JSON.parse(localStorage.getItem("user"));
+            if (!user.id) {
+                Router.push("/login");
+                return;
+            }
+        }
+    }, []);
+
     if (typeof document !== "undefined" && !/user_id/.test(document.cookie)) {
         Router.push("/login");
     }
